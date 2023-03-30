@@ -1,6 +1,95 @@
 <?php 
   include_once "config.php";
 ?>
+
+<style>
+  .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.users {
+  width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.users header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.users header .content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.users header .content span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.users header .content p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.users header .back-icon {
+  color: #666;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.users header .back-icon:hover {
+  color: #000;
+}
+
+.chat-box {
+  height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.typing-area {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.typing-area .input-field {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+}
+
+.typing-area button {
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.typing-area button:hover {
+  background-color: #0073e6;
+}
+</style>
 <body>
 <div class="wrapper">
     <section class="users">
