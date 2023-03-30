@@ -1,5 +1,6 @@
 <?php 
   include_once "config.php";
+  session_start();
 ?>
 
 <style>
@@ -130,7 +131,7 @@
     </section>
   </div>
 
-  <!-- <script src="chat/chat.js"></script> -->
+  <script src="chat/chat.js"></script>
 
 </body>
 </html>
