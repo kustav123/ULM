@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `act` (
   `time` text NOT NULL,
   `user` varchar(10) NOT NULL,
   PRIMARY KEY (`actid`)
-) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=63 ;
 
 --
 -- Dumping data for table `act`
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
   `additional_info` text,
   `uid` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=344 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=344 ;
 
 --
 -- Dumping data for table `activity_log`
@@ -473,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `associate` (
   `name` varchar(50) NOT NULL,
   `status` varchar(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `associate`
@@ -547,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `castin` (
   `time` varchar(10) NOT NULL,
   `cou_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `castin`
@@ -569,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `user` varchar(20) NOT NULL,
   `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `chat`
@@ -596,7 +596,7 @@ CREATE TABLE IF NOT EXISTS `coustomeradd` (
   `dob` date NOT NULL,
   `doa` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104;
 
 --
 -- Dumping data for table `coustomeradd`
@@ -715,7 +715,7 @@ CREATE TABLE IF NOT EXISTS `executive` (
   `name` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `executive`
@@ -789,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `followup` (
   `createdby` varchar(30) NOT NULL,
   `createdat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `followup`
@@ -816,7 +816,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `incoming_msg_id` int NOT NULL,
   `outgoing_msg_id` int NOT NULL,
   `msg` varchar(1000) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT ;
 
 -- --------------------------------------------------------
 
@@ -836,7 +836,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `fromuser` varchar(30) NOT NULL,
   `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=35  ;
 
 --
 -- Dumping data for table `notification`
@@ -861,7 +861,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `name` varchar(50) NOT NULL,
   `status` tinyint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=38  ;
 
 --
 -- Dumping data for table `product`
@@ -917,7 +917,7 @@ CREATE TABLE IF NOT EXISTS `ptype` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3  ;
 
 -- --------------------------------------------------------
 
@@ -931,7 +931,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `name` varchar(10) NOT NULL,
   `page` varchar(10000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5  ;
 
 --
 -- Dumping data for table `role`
@@ -956,7 +956,7 @@ CREATE TABLE IF NOT EXISTS `test` (
   `tht` text NOT NULL,
   `s` text NOT NULL,
   `ex` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM  ;
 
 --
 -- Dumping data for table `test`
@@ -992,7 +992,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `onstatus` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13  ;
 
 --
 -- Dumping data for table `users`
@@ -1019,7 +1019,7 @@ CREATE TABLE IF NOT EXISTS `walkout_tmp` (
   `actid` varchar(10) NOT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

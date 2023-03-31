@@ -282,8 +282,8 @@ button {
         }
         echo $output;
       ?>
-      <div class="chatcontent">
-  <div id="chatWindow"></div>
+        <div class="chatcontent">
+        <div id="chatWindow"></div>
 </div>
       </div>
     </section>
@@ -336,7 +336,8 @@ btn.onclick = function() {
       success: function(response){
         $('#chatWindow').html(response);
       }
-    });
+
+   });
   });
 });
   </script>
