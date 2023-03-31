@@ -121,7 +121,7 @@ $(document).ready(function() {
   // Load chat history when the modal is opened
   function longPoll() {
   $.ajax({
-    url: '/sb/ajax.php?type=1',
+    url: '/ulm/ajax.php?type=1',
     type: 'GET',
     success: function(data) {
       // Parse the JSON response
@@ -168,7 +168,7 @@ $('#chat-modal').on('shown.bs.modal', function() {
 
     // Send the chat message to the server using AJAX
     $.ajax({
-      url: '/sb/submit-chat-message.php',
+      url: '/ulm/submit-chat-message.php',
       type: 'POST',
       data: { message: chatMessage },
       success: function(data) {

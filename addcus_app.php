@@ -96,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // header("Location: seals.php?mob=$mobile_no");
                 logActivity('Add', 'Customer', 'Created Customer ' . $cou_namef .' by '.  $_SESSION["username"] , $_SESSION["id"] );
 
-                echo("<script>location.href = '/sb/in.php?mob=$mobile_no';</script>");
+                echo("<script>location.href = '/ulm/in.php?mob=$mobile_no';</script>");
 
                 exit();
             } else{
