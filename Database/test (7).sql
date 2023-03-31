@@ -38,13 +38,13 @@ CREATE TABLE IF NOT EXISTS `act` (
   `executive` varchar(50) DEFAULT NULL,
   `associate` varchar(50) DEFAULT NULL,
   `Type` varchar(50) DEFAULT NULL,
-  `product` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `product` varchar(3)  COLLATE  DEFAULT NULL,
   `billed` varchar(50) DEFAULT NULL,
-  `sr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `sr` varchar(50)  COLLATE  DEFAULT NULL,
   `requirement` varchar(50) DEFAULT NULL,
   `fm` varchar(50) DEFAULT NULL,
   `advance` varchar(50) DEFAULT NULL,
-  `orderst` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `orderst` varchar(50)  COLLATE  DEFAULT NULL,
   `walkout` varchar(50) DEFAULT NULL,
   `reason` varchar(50) DEFAULT NULL,
   `conversion` varchar(50) DEFAULT NULL,
@@ -128,9 +128,9 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `action` varchar(10) DEFAULT NULL,
-  `fun` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fun` varchar(50)  COLLATE  DEFAULT NULL,
   `additional_info` text,
-  `uid` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `uid` varchar(3)  COLLATE  NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=344 ;
 
@@ -543,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `castin` (
   `name` varchar(50) NOT NULL,
   `tgi` int NOT NULL,
   `thc` int NOT NULL,
-  `type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `type` varchar(10)  COLLATE  NOT NULL,
   `time` varchar(10) NOT NULL,
   `cou_id` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
@@ -567,7 +567,7 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `id` int NOT NULL AUTO_INCREMENT,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user` varchar(20) NOT NULL,
-  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `msg` text  COLLATE  NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 ;
 
@@ -589,10 +589,10 @@ INSERT INTO `chat` (`id`, `time`, `user`, `msg`) VALUES
 DROP TABLE IF EXISTS `coustomeradd`;
 CREATE TABLE IF NOT EXISTS `coustomeradd` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `cou_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `mobile_no` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `mail_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `cou_name` varchar(100)  COLLATE  NOT NULL,
+  `address` varchar(255)  COLLATE  NOT NULL,
+  `mobile_no` varchar(10) COLLATE  NOT NULL,
+  `mail_id` varchar(100)  COLLATE  NOT NULL,
   `dob` date NOT NULL,
   `doa` date NOT NULL,
   PRIMARY KEY (`id`)
@@ -781,9 +781,9 @@ CREATE TABLE IF NOT EXISTS `followup` (
   `castid` varchar(10) NOT NULL,
   `castname` varchar(50) NOT NULL,
   `cast_mob` varchar(10) NOT NULL,
-  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `remarks` varchar(500)  COLLATE  NOT NULL,
   `updated_by` varchar(20) NOT NULL,
-  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
+  `status` varchar(1)  COLLATE  NOT NULL DEFAULT '1',
   `date` timestamp NOT NULL,
   `remarks_his` varchar(5000) NOT NULL,
   `createdby` varchar(30) NOT NULL,
@@ -829,12 +829,12 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `id` int NOT NULL AUTO_INCREMENT,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `exptime` timestamp NOT NULL,
-  `sub` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `msg` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `sub` varchar(20)  COLLATE  NOT NULL,
+  `msg` varchar(150)  COLLATE  NOT NULL,
   `user` varchar(1000) NOT NULL,
-  `ack` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ack` varchar(1000)  COLLATE  NOT NULL,
   `fromuser` varchar(30) NOT NULL,
-  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
+  `status` varchar(1)  COLLATE  NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=35  ;
 
@@ -950,7 +950,7 @@ INSERT INTO `role` (`id`, `name`, `page`) VALUES
 
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE IF NOT EXISTS `test` (
-  `castid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `castid` varchar(50)  COLLATE  NOT NULL,
   `date` text NOT NULL,
   `tgi` text NOT NULL,
   `tht` text NOT NULL,
