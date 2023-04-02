@@ -122,7 +122,7 @@
             <i class="fas fa-arrow-left chat-back-arrow" onclick = "chat_back_arrow()"></i>
             <?php echo ucfirst($row['fname']). " " . ucfirst($row['lname']) ?>
             <?php 
-                ($row['status'] == "1") ? $status_class = "online" : $status_class = "offline"; 
+                ($row['onstatus'] == "1") ? $status_class = "online" : $status_class = "offline"; 
                 echo '<div class="status-dot '. $status_class .'" style="display: inline-block;"></div>';
             ?>
             

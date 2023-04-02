@@ -225,7 +225,8 @@
 	}
 	.chat-user-name{
 		/* padding:10px; */
-		font-size:12px;
+		font-size:20px;
+		color: blue;
 	}
 
 	.text{
@@ -267,8 +268,8 @@
 					}
 				?>
       			<div class="chatmodal-header">
-    				<h3 class="chatmodal-title">Chat 
-						<span class="chat-user-name"><?php echo "(" . ucfirst($row['fname']). " " . ucfirst($row['lname']) .")" ?></span>
+    				<h3 class="chatmodal-title"> 
+						<span class="chat-user-name"><?php echo  ucfirst($row['fname']). " " . ucfirst($row['lname'])  ?></span>
 					</h3>
   				</div>
         
@@ -293,7 +294,7 @@
 				<div class="users-list-main">
 					<?php
 						$outgoing_id = $_SESSION['id'];
-						$sql = "SELECT * FROM users WHERE NOT id = {$outgoing_id} ORDER BY id DESC";
+						$sql = "SELECT * FROM users WHERE NOT id = {$outgoing_id} ORDER BY onstatus DESC";
 						$query = mysqli_query($link, $sql);
 						
 						$output = "";
