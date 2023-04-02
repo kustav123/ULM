@@ -32,7 +32,5 @@
     }else{
         header("location: ../login.php");
     }
-
 ?>
-
 <!-- <img src="php/images/'.$row['img'].'" alt=""> -->
