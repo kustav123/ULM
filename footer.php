@@ -126,8 +126,8 @@
 	.chatcontent {
 	display: flex;
 	align-items: center;
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
+	padding: 0px;
+	/* border-bottom: 1px solid #ddd; */
 	}
 
 	.chatcontent img {
@@ -143,7 +143,7 @@
 	}
 
 	.chatcontent .details span {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 	}
 
@@ -153,21 +153,31 @@
 	}
 
 	.users-list {
-	padding: 10px;
-	max-height: 300px;
-	overflow-y: scroll;
+		padding: 10px;
+		max-height: 345px;
+		overflow-y: scroll;
 	}
 
-	.users-list a {
-	display: flex;
-	align-items: center;
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
-	cursor: pointer;
+	.users-list a:not(:last-child) {
+		display: flex;
+		align-items: center;
+		padding: 0px 10px;
+		border-bottom: 1px solid #ddd;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	.users-list a:last-child {
+		display: flex;
+		align-items: center;
+		padding: 0px 10px;		
+		cursor: pointer;
+		text-decoration: none;
 	}
 
 	.users-list a:hover {
-	background-color: #f2f2f2;
+		background-color: #f2f2f2;
+		box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.2);
 	}
 
 	.users-list .content {
@@ -179,12 +189,12 @@
 	}
 
 	.users-list .content .details span {
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 	}
 
 	.users-list .content .details p {
-	font-size: 14px;
+	font-size: 12px;
 	color: #666;
 	}
 
@@ -210,6 +220,18 @@
 	.users-list .status-dot.online .fas {
 	color: #07e896;
 	}
+	.no-message-para{
+		margin-bottom:5px !important;
+	}
+	.chat-user-name{
+		/* padding:10px; */
+		font-size:12px;
+	}
+
+	.text{
+		font-size:12px;
+		padding : 10px;
+	}
 </style>
 
 
@@ -218,24 +240,27 @@
   	<div class="chatmodal-content">
     	<section class="chatusers">
       		<header>
+				<?php 
+					$sql = mysqli_query($link, "SELECT * FROM users WHERE id = {$_SESSION['id']}");
+					if(mysqli_num_rows($sql) > 0){
+						$row = mysqli_fetch_assoc($sql);
+					}
+				?>
       			<div class="chatmodal-header">
-    				<h3 class="chatmodal-title">Chat</h3>
+    				<h3 class="chatmodal-title">Chat 
+						<span class="chat-user-name"><?php echo "(" . ucfirst($row['fname']). " " . ucfirst($row['lname']) .")" ?></span>
+					</h3>
   				</div>
         
 				<div class="chatcontent">
-          			<?php 
-            			$sql = mysqli_query($link, "SELECT * FROM users WHERE id = {$_SESSION['id']}");
-            			if(mysqli_num_rows($sql) > 0){
-              				$row = mysqli_fetch_assoc($sql);
-            			}
-          			?>
+          			
           	
 					<!-- <img src="php/images/<?php echo $row['img']; ?>" alt=""> -->
           
-					<div class="details">
-            			<span><?php echo $row['fname']. " " . $row['lname'] ?></span>
+					<!-- <div class="details"> -->
+            			<!-- <span class="chat-user-name"><?php echo ucfirst($row['fname']). " " . ucfirst($row['lname']) ?></span> -->
             			<!-- <p><?php echo $row['status']; ?></p> -->
-          			</div>
+          			<!-- </div> -->
         		</div>
         		<!-- <a href="php/logout.php?logout_id=<?php echo $row['id']; ?>" class="logout">Logout</a> -->
       		</header>
@@ -281,8 +306,8 @@
 									'<a href="#" class="openChat" data-userid="'. $row['id'] .'">
 										<div class="content">
 											<div class="details">
-												<span>'. $row['fname']. " " . $row['lname'] .'</span>
-												<p>'. $you . $msg .'</p>
+												<span>'. ucfirst($row['fname']). " " . ucfirst($row['lname']) .'</span>
+												<p class="no-message-para">'. $you . $msg .'</p>
 											</div>
 										</div>
 										<div class="status-dot '. $status_class .'"><i class=""></i></div>
@@ -361,4 +386,9 @@
 			});
 		});
 	});
+
+	function chat_back_arrow(){
+		$('#chatWindow').html("");
+		$(".users-list-main").show();
+	}
   </script>

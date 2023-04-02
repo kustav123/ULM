@@ -12,7 +12,7 @@
   }
 
   .users {
-    /* width: 500px; */
+    width: 270px;
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
@@ -39,7 +39,7 @@
   }
 
   .users header .content p {
-    font-size: 14px;
+    font-size: 8px;
     color: #666;
     margin: 0;
   }
@@ -47,7 +47,7 @@
   .users header .back-icon {
     color: #666;
     text-decoration: none;
-    margin-right: 10px;
+    margin-right: 10px;    
   }
 
   .users header .back-icon:hover {
@@ -55,7 +55,7 @@
   }
 
   .chat-box {
-    height: 600px !important;
+    height: 224px !important;
     overflow-y: scroll;
     flex: 1; /* add this line */
     padding: 0; /* change from 10px to 0 */
@@ -94,6 +94,10 @@
     background-color: #0073e6;
   }
 
+  .chat-back-arrow{
+    cursor: pointer;
+  }
+
 </style>
 <head>
 <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet">
@@ -113,11 +117,23 @@
             header("location: users.php");
           }
         ?>
-        <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+        <!-- <a href="users.php" class="back-icon"> -->
+        <span>
+            <i class="fas fa-arrow-left chat-back-arrow" onclick = "chat_back_arrow()"></i>
+            <?php echo ucfirst($row['fname']). " " . ucfirst($row['lname']) ?>
+            <?php 
+                ($row['status'] == "1") ? $status_class = "online" : $status_class = "offline"; 
+                echo '<div class="status-dot '. $status_class .'" style="display: inline-block;"></div>';
+            ?>
+            
+        </span>
+        <!-- </a> -->
+        
+
         <!-- <img src="php/images/<?php echo $row['img']; ?>" alt=""> -->
         <div class="details">
-          <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
-          <p><?php echo $row['status']; ?></p>
+          <!-- <span><?php //echo $row['fname']. " " . $row['lname'] ?></span> -->
+          <!-- <p><?php //echo $row['status']; ?></p> -->
         </div>
       </header>
       <div class="chat-box">
