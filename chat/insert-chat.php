@@ -1,7 +1,6 @@
 <?php
     session_start();
     // require_once ("../navbar.php");
-    require_once ("../config.php");
 
     if(isset($_SESSION['id'])){
         include_once "../config.php";

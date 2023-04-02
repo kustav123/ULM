@@ -11,16 +11,16 @@
         $query = mysqli_query($link, $sql);
         if(mysqli_num_rows($query) > 0){
             while($row = mysqli_fetch_assoc($query)){
-                if($row['outgoing_msg_id'] === $outgoing_id){
+                if($row['outgoing_msg_id'] == $outgoing_id){
                     $output .= '<div class="chat outgoing">
                                 <div class="details">
-                                    <p>'. $row['msg'] .'</p>
+                                    <p class="inbox-chat-para">'. $row['msg'] .'</p>
                                 </div>
                                 </div>';
                 }else{
                     $output .= '<div class="chat incoming">
                                 <div class="details">
-                                    <p>'. $row['msg'] .'</p>
+                                    <p class = "inbox-chat-para">'. $row['msg'] .'</p>
                                 </div>
                                 </div>';
                 }

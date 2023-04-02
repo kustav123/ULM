@@ -232,6 +232,26 @@
 		font-size:12px;
 		padding : 10px;
 	}
+
+	.outgoing{
+		text-align:end;
+		padding-right : 10px;
+		margin-bottom : 5px;
+	}
+
+	.incoming{
+		padding-left : 10px;
+		margin-bottom : 5px;
+	}
+
+	.inbox-chat-para{
+		background-color: lightgray;
+		display: inline;
+		padding: 5px 10px;
+		border-radius: 7px;
+		font-style: italic;
+		font-weight: 600;
+	}
 </style>
 
 
@@ -253,8 +273,6 @@
   				</div>
         
 				<div class="chatcontent">
-          			
-          	
 					<!-- <img src="php/images/<?php echo $row['img']; ?>" alt=""> -->
           
 					<!-- <div class="details"> -->
