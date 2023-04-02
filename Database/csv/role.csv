@@ -1,0 +1,4 @@
+"id","name","page"
+"1","Admin",
+"2","C.M.R","ajax.php,addcus.php,in.php,out.php,fup.php,update.php,activity.php,mess.php"
+"3","FM","ajax.php,fup.php,update.php,fm_index.php,activity.php,mess.php"
