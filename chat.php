@@ -6,13 +6,13 @@
 <style>
   .wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 100vh; */
   }
 
   .users {
-    width: 500px;
+    /* width: 500px; */
     border: 1px solid #ccc;
     border-radius: 5px;
     overflow: hidden;
