@@ -356,12 +356,8 @@
 		</label>
   		<!-- <script src="chat/users.js"></script> -->
 		<div class="d-flex align-items-center justify-content-between small">
-			<div class="text-muted">Copyright &copy; Your Website 2022</div>
-			<div>
-				<a href="#">Privacy Policy</a>
-				&middot;
-				<a href="#">Terms &amp; Conditions</a>
-			</div>
+			<div class="text-muted">Copyright &copy; Vasundhara 2023</div>
+			
 		</div>
 	</div>
 </footer>
