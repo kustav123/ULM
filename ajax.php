@@ -288,4 +288,27 @@ if(isset($_GET['type']) ){
      
 }
 }
+
+if(isset($_GET['DND'])){
+  $q = $_GET['DND'];
+  $id = $_GET['id'];
+  if($q == "Yes") {
+      $query = "update coustomeradd set DND='Yes' where id = $id;";
+      mysqli_query($link, $query);
+      logActivity('Update', 'Users', 'Start DND ' . $id .' by '.  $_SESSION["username"] , $_SESSION["id"] );
+
+      echo '<script type="text/javascript">
+      location.replace("cad.php");
+      </script>';
+     
+}else{
+  $query = "update coustomeradd set DND='No' where id = $id;";
+      mysqli_query($link, $query);
+      logActivity('Update', 'Users', 'Stop DND ' . $id .' by '.  $_SESSION["username"] , $_SESSION["id"] );
+
+      echo '<script type="text/javascript">
+      location.replace("cad.php");
+      </script>';
+}
+}
 ?>
