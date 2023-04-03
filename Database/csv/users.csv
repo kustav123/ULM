@@ -1,8 +1,0 @@
-"id","username","password","created_at","role","mob","status","fname","lname","onstatus"
-"1","admin","$2y$10$DE8XFFa.9f4E4Pe6FPJyd.2yxR/EqngPCizob.D.PgfkSClj..psC","2023-02-21 00:14:44","1",,"1","admin","user","1"
-"2","data","$2y$10$nIZWt7jbhu/CQ36K7gMQlul7NAIqych2F4qhIljl7FgkvRK6h4k/.","2023-03-07 16:02:23","1",,"1","data","user","1"
-"8","data2","$2y$10$nIZWt7jbhu/CQ36K7gMQlul7NAIqych2F4qhIljl7FgkvRK6h4k/.","2023-03-09 18:12:19","1",,"1","user","name","0"
-"9","fmuser1@vdr","$2y$10$nIZWt7jbhu/CQ36K7gMQlul7NAIqych2F4qhIljl7FgkvRK6h4k/.","2023-03-16 14:36:15","3",,"1","aaa","eeee","0"
-"10","wsee@vdr","$2y$10$7UO3BJ/AWz8DoVcMjFRigOBobRxMoIz/8cRhpGm.RVSX8OPI340Qa","2023-03-30 16:25:30","1",,"1","www","wwww","0"
-"11","xxxx@vdr","$2y$10$CrLZwgYSlrhe3jFV12BBneNi2ddBdT/mFFXPlnY7zsF2B2.SXn.d6","2023-03-30 16:25:46","1",,"1","aaa","xxxx","0"
-"12","qecqe@vdr","$2y$10$rPg3/GGAiuLxfY1f10NrJu8LzO2TJsTUUaO6oHmZ5jrzoc3QrBEKS","2023-03-30 16:26:07","1",,"1","eeee","ccewcqc","0"
