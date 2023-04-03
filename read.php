@@ -194,7 +194,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
 ';                         
             } else{
                 // URL doesn't contain valid id parameter. Redirect to error page
-                echo "error!!" ;
+                echo "No trunsection found for this user." ;
                 exit();
             }
             
