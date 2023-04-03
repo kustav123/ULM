@@ -9,14 +9,14 @@ var myBarChart = new Chart(ctx, {
   data: {
     labels: [],
     datasets: [{
-      label: "Billed",
+      label: "Happy",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
       data: [],
       borderWidth: 1
     },
     {
-      label: "Not Billed",
+      label: "UnHappy",
       backgroundColor: "rgba(255, 99, 132, 1)",
       borderColor: "rgba(255, 99, 132, 1)",
       data: [],

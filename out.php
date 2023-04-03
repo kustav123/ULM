@@ -262,10 +262,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     </select> -->
                                               </div>
                                                 <div class="form-group col-md-4">
-                                                   <label for="billed">Billed</label>
+                                                   <label for="billed">Status</label>
                                                    <select id="billed" class="form-control" name='billed'>
-                                                   <option selected>No</option>
-                                                   <option>Yes</option>
+                                                   <option selected>UnHappy</option>
+                                                   <option>Happy</option>
                                                    </select>
                                                </div>
                                               </div>

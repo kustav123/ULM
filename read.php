@@ -76,7 +76,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                         echo "<th>Sales Associate</th>";
                                         echo "<th>Type</th>";
                                         echo "<th>Product</th>";
-                                        echo "<th>Billed</th>";
+                                        echo "<th>Status</th>";
                                         echo "<th>Service/Repair</th>";
                                         echo "<th>Requirement</th>";
                                         echo "<th>FM/SM/GM/</th>";
@@ -280,7 +280,7 @@ if (isset($_POST["to"]) && isset($_POST["from"])) {
                           echo "<th>Sales Associate</th>";
                           echo "<th>Type</th>";
                           echo "<th>Product</th>";
-                          echo "<th>Billed</th>";
+                          echo "<th>Status</th>";
                           echo "<th>Service/Repair</th>";
                           echo "<th>Requirement</th>";
                           echo "<th>FM/SM/GM</th>";
@@ -482,7 +482,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                             echo "<th>Sales Associate</th>";
                             echo "<th>Type</th>";
                             echo "<th>Product</th>";
-                            echo "<th>Billed</th>";
+                            echo "<th>Status</th>";
                             echo "<th>Service/Repair</th>";
                             echo "<th>Requirement</th>";
                             echo "<th>FM/SM/GM/-ate</th>";
@@ -656,7 +656,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                             echo "<th>Date</th>";
                             echo "<th>Type</th>";
                             echo "<th>Visit</th>";
-                            echo "<th>Billed</th>";
+                            echo "<th>Status</th>";
                             echo "<th>Service/Repair</th>";
                             echo "<th>Requirement</th>";
                             echo "<th>Advance</th>";
@@ -814,7 +814,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                             echo "<tr>";
                                 echo "<th>Type</th>";
                                 echo "<th>Visit</th>";
-                                echo "<th>Billed</th>";
+                                echo "<th>Status</th>";
                                 echo "<th>Service/Repair</th>";
                                 echo "<th>Requirement</th>";
                                 echo "<th>Advance</th>";
@@ -922,6 +922,161 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
           }
         }
 
+        // followup report
+
+        if (isset($_POST["rfd"]) && isset($_POST["rtd"])) {
+            require_once "config.php";
+            
+           
+                  $tos = $_POST["rtd"];
+             
+                  $froms = $_POST["rfd"];
+                  $type = $_POST["rtyp"];
+                  
+
+              
+              
+              
+              // Check input errors before inserting in database
+              if(!empty($tos) && !empty($froms) ){
+                
+                if($type == 1){
+                    $sql = "SELECT * FROM `followup` WHERE createdat between ? and ?; ";  
+                }elseif($type == 2){
+                    $sql = "SELECT * FROM `followup` WHERE date(lastact) between ? and ? and status=0; ";
+                }else{
+                    $sql = "SELECT * FROM `followup` WHERE date(lastact) between ? and ? and status=1; ";
+                }
+                
+                  
+          
+          
+                   
+                  if($stmt = mysqli_prepare($link, $sql)){
+                      // Bind variables to the prepared statement as parameters
+                      mysqli_stmt_bind_param($stmt, "ss", $param_from, $param_to, );
+                      
+                      // Set parameters
+                      $param_from = $froms;
+                      $param_to = $tos;
+        
+          
+                      
+                      // Attempt to execute the prepared statement
+                      if(mysqli_stmt_execute($stmt)){
+                          // Records created successfully. Redirect to landing page
+                          $result = mysqli_stmt_get_result($stmt);
+                          
+                          // Records deleted successfully. Redirect to landing page
+                          // if(mysqli_stmt_num_rows($stmt) > 0){
+                          if(mysqli_num_rows($result) > 0){     
+                            echo '<div id="myTableWrapperx" >' ;
+                            echo '<table id= "tableidz"class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">';
+                                            echo '<thead class="thead-dark">';
+                                echo "<tr>";
+                                    echo "<th>Cutomer Name</th>";
+                                    echo "<th>Mobile</th>";
+                                    echo "<th>Last Remarks</th>";
+                                    echo "<th>Remarks History</th>";
+                                    echo "<th>Creat Date</th>";
+        
+                                    
+                               
+                                 
+                                    
+                                echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
+                            while($row = mysqli_fetch_array($result)){
+                                echo "<tr>";
+                                    echo "<td>" . $row['castname'] . "</td>";
+                                    echo "<td>" . $row['cast_mob'] . "</td>";
+                                    echo "<td>" . $row['remarks'] . "</td>";
+                                    echo "<td>" . $row['remarks_his'] . "</td>";
+                                    echo "<td>" . $row['createdat'] . "</td>";
+                                    
+                                echo "</tr>";
+                            }
+                            echo "</tbody>";                            
+                        echo "</table>";
+                        echo '</div>';
+                        echo '
+                        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                        <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+                        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+                        <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+                        <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+                        <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+          
+                        <style>
+                        .dt-button {
+                            position: relative;
+                            float: right;
+                            margin-left: 10px;
+                            margin-bottom: 10px;
+                            top: 0;
+                            right: 50%;
+                          }
+                          
+                          @media screen and (max-width: 767px) {
+                            .dt-buttons {
+                              margin-top: 10px;
+                            }
+                            .dt-button {
+                              float: none;
+                              margin-left: 0;
+                              margin-bottom: 5px;
+                              display: block;
+                            }
+                          }
+                        </style>
+          
+                        <script>
+                        $(document).ready(function() {
+                            $("#tableidz").DataTable({
+                                "scrollX": true,
+                                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                                "dom": "lBfrtip",
+                                buttons: [
+                                    {
+                                        extend: "print",
+                                        text: "Print",
+                                        className: "btn-primary"
+                                    },
+                                  
+                                    {
+                                        extend: "excel",
+                                        text: "Excel",
+                                        className: "btn-primary",
+                                        exportOptions: {
+                                            columns: `:visible`
+                                        },
+                                        customize: function (xlsx) {
+                                            var sheet = xlsx.xl.worksheets[\'sheet1.xml\'];
+                                            $(\'row c[r^="C"]\', sheet).attr(\'s\', \'2\');
+                                        }
+                                    }
+                                ]
+                            });
+                        });
+                        </script>
+          ';
+                              // Free result set
+                              mysqli_stmt_free_result($stmt);
+                              mysqli_close($link);
+                          // } else{
+                          //     echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                          // }
+                      } else{
+                          echo "Oops! No data found.";
+                      }
+              
+                    }
+                }
+              }
+            }
 
 ?>
                             

@@ -130,7 +130,7 @@ require_once "navbar.php";
                                 <div class="card mb-4">
                                     <div class="card-header text-white">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        Billed Yes vs No 
+                                        Happy vs UnHappy 
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="15"></canvas></div>
                                 </div>

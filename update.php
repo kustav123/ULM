@@ -34,7 +34,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($address_err) && empty($salary_err)){
         // Prepare an update statement
-        $sql = "UPDATE followup SET date=?, remarks=? , updated_by=? , status =?, remarks_his = concat(remarks_his, ?) WHERE id=?";
+        $sql = "UPDATE followup SET date=?, remarks=? , updated_by=? , status =?, lastact=now(), remarks_his = concat(remarks_his, ?) WHERE id=?";
          
 
         if (isset($_POST["status"]) && $_POST["status"] == "on") {

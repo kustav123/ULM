@@ -230,10 +230,11 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col">
-                                                                <label for="tgi">Report Type</label>
+                                                                <label for="tgi">Report By</label>
                                                                 <select id="rtyp" class="form-control" name='rtyp'>
-                                                                    <option selected>Create - End</option>
-                                                                    <option>2</option>
+                                                                    <option value="1" selected>Created</option>
+                                                                    <option value="2">Closed</option>
+                                                                    <option value="3">Open,Last activity</option>
                                                                 </select>
                                                             </div>
                                                         </div>
