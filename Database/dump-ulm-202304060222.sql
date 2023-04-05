@@ -29,8 +29,8 @@ CREATE TABLE `act` (
   `tgi` int DEFAULT NULL,
   `tht` int DEFAULT NULL,
   `source` varchar(50) DEFAULT NULL,
-  `executive` varchar(50) DEFAULT NULL,
-  `associate` varchar(50) DEFAULT NULL,
+  `executive` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `associate` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Type` varchar(50) DEFAULT NULL,
   `product` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `billed` varchar(50) DEFAULT NULL,
@@ -43,9 +43,9 @@ CREATE TABLE `act` (
   `reason` varchar(50) DEFAULT NULL,
   `conversion` varchar(50) DEFAULT NULL,
   `remarks` varchar(50) DEFAULT NULL,
-  `intime` varchar(10)  DEFAULT NULL,
-  `time` text  DEFAULT NULL,
-  `user` varchar(10)   DEFAULT NULL,
+  `intime` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `time` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`actid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -72,9 +72,9 @@ CREATE TABLE `activity_log` (
   `action` varchar(10) DEFAULT NULL,
   `fun` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `additional_info` text,
-  `uid` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `uid` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,6 @@ CREATE TABLE `activity_log` (
 
 LOCK TABLES `activity_log` WRITE;
 /*!40000 ALTER TABLE `activity_log` DISABLE KEYS */;
-INSERT INTO `activity_log` VALUES (1,'2023-04-04 14:08:57','Login','Logedin','User admin Logedin from 172.24.88.115','1'),(2,'2023-04-04 14:11:26','Login','Logedin','User admin Logedin from 172.24.215.185','1'),(3,'2023-04-04 14:32:10','Login','Logedin','User admin Logedin from 172.24.234.67','1'),(4,'2023-04-04 17:09:23','Login','Logedin','User admin Logedin from 172.24.88.115','1');
 /*!40000 ALTER TABLE `activity_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +98,7 @@ CREATE TABLE `associate` (
   `name` varchar(50) NOT NULL,
   `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +107,7 @@ CREATE TABLE `associate` (
 
 LOCK TABLES `associate` WRITE;
 /*!40000 ALTER TABLE `associate` DISABLE KEYS */;
-INSERT INTO `associate` VALUES (1,'Shanker','1'),(2,'Mirza','1'),(3,'Ashok','1'),(4,'Rajesh','1'),(5,'Mahender','1'),(6,'P.Prasad','1'),(7,'Mahipal','1'),(8,'K.Mahesh','1'),(9,'Manju','1'),(10,'Amareshwari','1'),(11,'Anusha','1'),(12,'Kajal','1'),(13,'Jr.Khaja','1'),(14,'Jalender','1'),(15,'Bhavani','1'),(16,'Omer','1'),(17,'Abhilash/Gyani','1'),(18,'D.Mahesh','1'),(19,'SR.Khaja','1'),(20,'Veerender','1'),(21,'Kiran','1'),(22,'Gowtham','1'),(23,'Sai','1'),(24,'M.Nagesh','1'),(25,'Naveen','1'),(26,'Mamatha','1'),(27,'Hema','1'),(28,'Priyanka','1'),(29,'Prashanth','1'),(30,'Kranthi','1'),(31,'Shanker','1'),(32,'Mirza','1'),(33,'Ashok','1'),(34,'Rajesh ','1'),(35,'Mahender','1'),(36,'P.Prasad','1'),(37,'Mahipal','1'),(38,'K.Mahesh','1'),(39,'Manju','1'),(40,'Anusha','1'),(41,'Kajal','1'),(42,'JR.Khaja','1'),(43,'Rajkumar','1'),(44,'Laxmi','1'),(45,'Nikhil','1'),(46,'Vivek','1');
+INSERT INTO `associate` VALUES (1,'N/A','1'),(2,'Shanker','1'),(3,'Mirza','1'),(4,'Ashok','1'),(5,'Rajesh','1'),(6,'Mahender','1'),(7,'P.Prasad','1'),(8,'Mahipal','1'),(9,'K.Mahesh','1'),(10,'Manju','1'),(11,'Amareshwari','1'),(12,'Anusha','1'),(13,'Kajal','1'),(14,'Jr.Khaja','1'),(15,'Jalender','1'),(16,'Bhavani','1'),(17,'Omer','1'),(18,'Abhilash/Gyani','1'),(19,'D.Mahesh','1'),(20,'SR.Khaja','1'),(21,'Veerender','1'),(22,'Kiran','1'),(23,'Gowtham','1'),(24,'Sai','1'),(25,'M.Nagesh','1'),(26,'Naveen','1'),(27,'Mamatha','1'),(28,'Hema','1'),(29,'Priyanka','1'),(30,'Prashanth','1'),(31,'Kranthi','1'),(32,'Shanker','1'),(33,'Mirza','1'),(34,'Ashok','1'),(35,'Rajesh ','1'),(36,'Mahender','1'),(37,'P.Prasad','1'),(38,'Mahipal','1'),(39,'K.Mahesh','1'),(40,'Manju','1'),(41,'Anusha','1'),(42,'Kajal','1'),(43,'JR.Khaja','1'),(44,'Rajkumar','1'),(45,'Laxmi','1'),(46,'Nikhil','1'),(47,'Vivek','1');
 /*!40000 ALTER TABLE `associate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,8 +122,8 @@ CREATE TABLE `castin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `mob` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `tgi` int DEFAULT NULL,
-  `thc` int DEFAULT NULL,
+  `tgi` int DEFAULT '0',
+  `thc` int DEFAULT '0',
   `type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `time` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `cou_id` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -183,7 +182,7 @@ CREATE TABLE `coustomeradd` (
   `doa` date DEFAULT NULL,
   `DND` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'No',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,6 +191,7 @@ CREATE TABLE `coustomeradd` (
 
 LOCK TABLES `coustomeradd` WRITE;
 /*!40000 ALTER TABLE `coustomeradd` DISABLE KEYS */;
+INSERT INTO `coustomeradd` VALUES (1,'pushpavathi','Hyderabad','8121813388',NULL,NULL,NULL,'No');
 /*!40000 ALTER TABLE `coustomeradd` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ DROP TABLE IF EXISTS `executive`;
 CREATE TABLE `executive` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `status` int DEFAULT NULL DEFAULT '1',
+  `status` int DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -216,7 +216,7 @@ CREATE TABLE `executive` (
 
 LOCK TABLES `executive` WRITE;
 /*!40000 ALTER TABLE `executive` DISABLE KEYS */;
-INSERT INTO `executive` VALUES (1,'Shanker',1),(2,'Mirza',1),(3,'Ashok',1),(4,'Rajesh',1),(5,'Mahender',1),(6,'P.Prasad',1),(7,'Mahipal',1),(8,'K.Mahesh',1),(9,'Manju',1),(10,'Amareshwari',1),(11,'Anusha',1),(12,'Kajal',1),(13,'Jr.Khaja',1),(14,'Jalender',1),(15,'Bhavani',1),(16,'Omer',1),(17,'Abhilash/Gyani',1),(18,'D.Mahesh',1),(19,'SR.Khaja',1),(20,'Veerender',1),(21,'Kiran',1),(22,'Gowtham',1),(23,'Sai',1),(24,'M.Nagesh',1),(25,'Naveen',1),(26,'Mamatha',1),(27,'Hema',1),(28,'Priyanka',1),(29,'Prashanth',1),(30,'Kranthi',1),(31,'Shanker',1),(32,'Mirza',1),(33,'Ashok',1),(34,'Rajesh ',1),(35,'Mahender',1),(36,'P.Prasad',1),(37,'Mahipal',1),(38,'K.Mahesh',1),(39,'Manju',1),(40,'Anusha',1),(41,'Kajal',1),(42,'JR.Khaja',1),(43,'Rajkumar',1),(44,'Laxmi',1),(45,'Nikhil',1),(46,'Vivek',1);
+INSERT INTO `executive` VALUES (1,'Shanker',0),(2,'Mirza',0),(3,'Ashok',1),(4,'Rajesh',1),(5,'Mahender',1),(6,'P.Prasad',1),(7,'Mahipal',1),(8,'K.Mahesh',0),(9,'Manju',1),(10,'Amareshwari',1),(11,'Anusha',1),(12,'Kajal',0),(13,'Jr.Khaja',0),(14,'Jalender',1),(15,'Bhavani',1),(16,'Omer',1),(17,'Abhilash/Gyani',1),(18,'D.Mahesh',1),(19,'SR.Khaja',1),(20,'Veerender',1),(21,'Kiran',1),(22,'Gowtham',1),(23,'Sai',1),(24,'M.Nagesh',0),(25,'Naveen',1),(26,'Mamatha',1),(27,'Hema',1),(28,'Priyanka',1),(29,'Prashanth',1),(30,'Kranthi',1),(31,'Shanker',0),(32,'Mirza',0),(33,'Ashok',0),(34,'Rajesh ',1),(35,'Mahender',1),(36,'P.Prasad',1),(37,'Mahipal',1),(38,'K.Mahesh',1),(39,'Manju',1),(40,'Anusha',1),(41,'Kajal',1),(42,'JR.Khaja',0),(43,'Rajkumar',1),(44,'Laxmi',1),(45,'Nikhil',1),(46,'Vivek',1);
 /*!40000 ALTER TABLE `executive` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,19 +229,19 @@ DROP TABLE IF EXISTS `followup`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `followup` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `castid` varchar(10) DEFAULT NULL,
-  `castname` varchar(50) DEFAULT NULL,
-  `cast_mob` varchar(10) DEFAULT NULL,
+  `castid` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `castname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `cast_mob` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `updated_by` varchar(20) DEFAULT NULL,
-  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL DEFAULT '1',
-  `date` timestamp DEFAULT NULL,
-  `remarks_his` varchar(5000) DEFAULT NULL,
-  `createdby` varchar(30) DEFAULT NULL,
-  `createdat` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '1',
+  `date` timestamp NULL DEFAULT NULL,
+  `remarks_his` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `createdby` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `createdat` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `lastact` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,14 +287,14 @@ DROP TABLE IF EXISTS `notification`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notification` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `time` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
-  `exptime` timestamp DEFAULT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `exptime` timestamp NULL DEFAULT NULL,
   `sub` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `msg` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `user` varchar(1000) DEFAULT NULL,
+  `user` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `ack` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `fromuser` varchar(30) DEFAULT NULL,
-  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL DEFAULT '1',
+  `fromuser` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -320,7 +320,7 @@ CREATE TABLE `product` (
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `status` int DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +329,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Tikka(Papidibilla)',1),(2,'Tikka(Papidibilla)',1),(3,'Bore(Mathapatti)',1),(4,'Mati(Matilu)',1),(5,'Earrings(Kammalu)',1),(6,'Nath(Mukkupudaka)',1),(7,'Nosepin',1),(8,'Jada(Jadalu)',1),(9,'Hair Pin(Jadabilla)',1),(10,'Choker',1),(11,'Necklace',1),(12,'Haram',1),(13,'Black Beads',1),(14,'Kante',1),(15,'Chain',1),(16,'Sutram Chain',1),(17,'Finger Ring',1),(18,'Ring With Bracelet',1),(19,'Bracelet',1),(20,'Armlet(Bhajuban)',1),(21,'Oddiyanam',1),(22,'Vanky',1),(23,'Kandholi',1),(24,'Bangles',1),(25,'Kadda(Kadiyam)',1),(26,'Pendant(Pathakam)',1),(27,'Brooch',1),(28,'Anklet(Pattilu)',1),(29,'NKL/Earrings',1),(30,'BB/PNDT',1),(31,'Chain/PNDT',1),(32,'BANG/FRNG',1),(33,'Haram/CHK',1),(34,'Mathapatti/Tikka',1),(35,'Earrings/Mattis ',1),(36,'Others',1),(37,'SET',1);
+INSERT INTO `product` VALUES (1,'Tikka(Papidibilla)',1),(2,'Tikka(Papidibilla)',1),(3,'Bore(Mathapatti)',1),(4,'Mati(Matilu)',1),(5,'Earrings(Kammalu)',1),(6,'Nath(Mukkupudaka)',1),(7,'Nosepin',1),(8,'Jada(Jadalu)',1),(9,'Hair Pin(Jadabilla)',1),(10,'Choker',1),(11,'Necklace',1),(12,'Haram',1),(13,'Black Beads',1),(14,'Kante',1),(15,'Chain',1),(16,'Sutram Chain',1),(17,'Finger Ring',1),(18,'Ring With Bracelet',1),(19,'Bracelet',1),(20,'Armlet(Bhajuban)',1),(21,'Oddiyanam',1),(22,'Vanky',1),(23,'Kandholi',1),(24,'Bangles',1),(25,'Kadda(Kadiyam)',1),(26,'Pendant(Pathakam)',1),(27,'Brooch',1),(28,'Anklet(Pattilu)',1),(29,'NKL/Earrings',1),(30,'BB/PNDT',1),(31,'Chain/PNDT',1),(32,'BANG/FRNG',1),(33,'Haram/CHK',1),(34,'Mathapatti/Tikka',1),(35,'Earrings/Mattis ',1),(36,'Others',1),(37,'SET',1),(38,'N/A',1);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,7 +401,7 @@ CREATE TABLE `users` (
   `onstatus` int DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,9 +410,20 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2y$10$DE8XFFa.9f4E4Pe6FPJyd.2yxR/EqngPCizob.D.PgfkSClj..psC','2023-02-21 00:14:44',1,'',1,'admin','user',1);
+INSERT INTO `users` VALUES (1,'admin','$2y$10$DE8XFFa.9f4E4Pe6FPJyd.2yxR/EqngPCizob.D.PgfkSClj..psC','2023-02-21 00:14:44',1,'',1,'admin','user',1),(2,'karuna@vdr','$2y$10$IgSe8LxLV48SaoZTiMyI/.bTMbKEifbXxIwT0wic80.KbHoJfAPei','2023-04-05 11:26:35',2,NULL,1,'Karuna','Mekalollu',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+CREATE INDEX idx_coustomeradd
+ON coustomeradd (id, mobile_no);
+CREATE INDEX idx_act_cast
+ON act (actid, castid);
+
+CREATE INDEX idx_act_exe
+ON act (actid, executive);
+
+
 
 --
 -- Dumping routines for database 'ulm'
@@ -427,4 +438,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-05 10:33:58
+-- Dump completed on 2023-04-06  2:24:08
