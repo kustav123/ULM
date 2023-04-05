@@ -18,6 +18,8 @@ require_once "config.php";
 require_once "navbar.php";
 error_reporting(E_ALL);
 ini_set('display_errors',1);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 // Define variables and initialize with empty values
 
 $intimed = $cou_name_err = $inputmob= $type ="";
@@ -26,7 +28,23 @@ $intimed = $cou_name_err = $inputmob= $type ="";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate name
 
-    
+    if(!isset($_POST["associate"])){
+        $associate = 1 ;
+    } else {
+        $associate = trim($_POST["associate"]);
+    }
+    if(!isset($_POST["product"])){
+        $product = 38 ;
+    } else {
+        $product = trim($_POST["product"]);
+    }
+    if(!isset($_POST["fm"])){
+        $fm = '' ;
+    } else {
+        $fm = trim($_POST["fm"]);
+    }
+
+
     $input_cou_id = trim($_POST["name"]);
     if(empty($input_cou_id)){
         $cou_name_err = "Add customer on database first.";
@@ -37,13 +55,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $thc = trim($_POST["thc"]); 
         $source = trim($_POST["ws"]);
         $executive = trim($_POST["executive"]);
-        $associate = trim($_POST["associate"]);
         $type = trim($_POST["type"]);
-        $product = trim($_POST["product"]);
         $billed = trim($_POST["billed"]);
         $sr = trim($_POST["sr"]);
         $requirement = trim($_POST["requirement"]);
-        $fm = trim($_POST["fm"]);
         $advance = trim($_POST["advance"]);
         $orderst = trim($_POST["order"]);
         $walkout = trim($_POST["walk"]);
@@ -67,6 +82,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             // mysqli_stmt_bind_param($stmt, "ssssssssssssssssssss", $cou_id, 'curdate()', $tgi, $thc, $source, $executive, $associate, $type, $product, $billed, $sr, $requirement, $fm, $advance, $orderst, $walkout, $reason, $conversion, $remark, $time);
+            date_default_timezone_set('Asia/Kolkata');
+ 
             $date = date('Y-m-d');
             mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssss", $cou_id, $date, $tgi, $thc, $source, $executive, $associate, $type, $product, $billed, $sr, $requirement, $fm, $advance, $orderst, $walkout, $reason, $conversion, $remark, $intime ,$time, $userid);
              
@@ -75,13 +92,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                if (isset($_POST["followup"]) && $_POST["followup"] == "on") {
                 // Get comment and follow-up date from form
                 $cid =  $input_cou_id;
-                $cmod = $_POST["inputmob"];
+                $cmob = $_POST["inputmob"];
                 $comment = $_POST["comment"];
                 $followup_date = $_POST["followup-date"];
                 $cnamei = $_POST["cname"];
                 $updatedby = $_SESSION["username"];
                 // Insert comment and follow-up date into follow-up table
-                $sql = "INSERT INTO followup (castid, cast_mob	,castname, remarks , 	updated_by ,date , createdby) VALUES ( '$cid', '$cmod' , '$cnamei', '$comment','$updatedby' , '$followup_date', '$username')";
+                $sql = "INSERT INTO followup (castid, cast_mob	,castname, remarks , 	updated_by ,date , createdby) VALUES ( '$cid', '$cmob' , '$cnamei', '$comment','$updatedby' , '$followup_date', '$username')";
                 if (mysqli_query($link, $sql)) {
                     logActivity('Add', 'Followup', 'Customer Followup ' . $cmob .' by '.  $_SESSION["username"] , $_SESSION["id"] );    
                 } else {
@@ -204,7 +221,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                  error_reporting(E_ALL);
                                                  ini_set('display_errors',1);
                                                  // Define variables and initialize with empty values 
-                                                 $sqla = "SELECT id, name FROM associate where status = 1";
+                                                 $sqla = "SELECT id, name FROM associate where status = 1 and id != 1";
                                                  $resulta = $link->query($sqla);
                        
                                                  // Create dropdown
@@ -237,7 +254,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                  error_reporting(E_ALL);
                                                  ini_set('display_errors',1);
                                                  // Define variables and initialize with empty values 
-                                                 $sqla = "SELECT id, name FROM product where status = 1";
+                                                 $sqla = "SELECT id, name FROM product where status = 1 and id != 38";
                                                  $resulta = $link->query($sqla);
                        
                                                  // Create dropdown
@@ -288,13 +305,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                              <div class="col">
                                                    <label for="fm">FM/SM/GM</label>
                                                    <select id="fm" class="form-control" name='fm'>
-                                                   <option selected>Rajesh</option>
+                                                   <option selected disabled>FM/SM/GM</option>
+                                                   <option>Rohan sir</option>
+                                                   <option>Puneet</option>
+                                                   <option>Jalandar</option>
+                                                   <option>Rajesh</option>
+                                                   <option>Bhavani</option>
+                                                   <option>Vasundhara Ma'am</option>
+                                                   <option>Ayushi Ma'am</option>
+                                                   <option>Neha Ma'am</option>
+                                                   <option>Harshita Ma'am</option>
+                                                   <option>Veerendra</option>
+                                                   <option>Khaza</option>
                                                    <option>Ashok</option>
-                                                   <option>Name</option>
-                                                   <option>Name</option>
+                                                   <option>Abhilash</option>
                                                    </select>
                                              </div>
                                         </div>
+
                                          
                        
                                          <div class="row">

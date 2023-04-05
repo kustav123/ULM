@@ -33,6 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate name
     $input_cou_mob = trim($_POST["inputmob"]);
     $input_cou_time = trim($_POST["time"]);
+    $input_cou_name = trim($_POST["name"]);
     if(empty($input_cou_mob)){
         $cou_mob_err = "PLease fill the required information";
     } else {
@@ -46,24 +47,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $time = $input_cou_time ;
 
     }
-    
+    if(empty($input_cou_name)){
+      $name_err = "Please click on the text box to autofill the name";
+    }else {
+      $name = $input_cou_name ;
 
-    
+    }
+  
         $cou_id = trim($_POST["id"]);
-        $name = trim($_POST["name"]);
         $tgi = trim($_POST["tgi"]); 
         $thc = trim($_POST["thc"]); 
         $type = trim($_POST["type"]);
 
-        
-    
-    
-    
     // Check input errors before inserting in database
-    if(empty($cou_mob_err) && empty($cou_time_err) ){
+    if(empty($cou_mob_err) && empty($cou_time_err) && empty($name_err)){
         
         $sql = "INSERT INTO `castin` ( `mob`, `name`, `tgi`, `thc`, `type`, `time`, `cou_id`) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
- 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sssssss", $inputmob  , $name, $tgi, $thc, $type, $time, $cou_id);
@@ -78,7 +77,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				location.replace("in.php");
 			  </script>';
         mysqli_stmt_close($stmt);
-                exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -87,9 +85,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Close statement
        
     }
+    mysqli_close($link);
+
   }
     // Close connection
-    mysqli_close($link);
 
 
 ?>
@@ -116,7 +115,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                 </div>
                                                 <div class="col">
                                                   <label for="name">Name</label>
-                                                  <input type="text" class="form-control" id="name" name="name" readonly>
+                                                  <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" id="name" name="name" readonly>
+                                                  <span class="invalid-feedback"><?php echo $name_err;?></span>
                                                 </div>
                                              </div>
 
