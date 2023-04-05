@@ -18,8 +18,8 @@ require_once "config.php";
 require_once "navbar.php";
 
 // Define variables and initialize with empty values
-$cou_name = $dob = $address = $mobile_no = $mail_id = $doa = "";
-$cou_name_err = $address_err = $mobile_no_err = $mail_id_err = "";
+$cou_name = $dob = $address = $mobile_no = $mail_id = $doa_err = $dob_err = $mail_id_err ="";
+$cou_name_err = $address_err = $mobile_no_err = $mail_id_err = $doa_err = "";
  
 if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
   
@@ -43,27 +43,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $address_err = "Please enter an address.";     
     } else{
         $address = $input_address;
-    }
-
-    $input_mail_id = trim($_POST["mail_id"]);
-    if(empty($input_mail_id)){
-        $mail_id_err = "Please enter an email.";     
-    } else{
         $mail_id = $input_mail_id;
-    }
-
-    $input_dob = trim($_POST["dob"]);
-    if(empty($input_dob)){
-        $dob_err = "Please enter an DOB.";     
-    } else{
         $dob = $input_dob;
-    }
-    $input_doa = trim($_POST["doa"]);
-    if(empty($input_doa)){
-        $doa_err = "Please enter an DOA.";     
-    } else{
         $doa = $input_doa;
     }
+
+    // $input_mail_id = trim($_POST["mail_id"]);
+    // if(empty($input_mail_id)){
+    //     $mail_id_err = "Please enter an email.";     
+    // } else{
+    //     $mail_id = $input_mail_id;
+    // }
+
+    // $input_dob = trim($_POST["dob"]);
+    // if(empty($input_dob)){
+    //     $dob_err = "Please enter an DOB.";     
+    // } else{
+    //     $dob = $input_dob;
+    // }
+    // $input_doa = trim($_POST["doa"]);
+    // if(empty($input_doa)){
+    //     $doa_err = "Please enter an DOA.";     
+    // } else{
+    //     $doa = $input_doa;
+    // }
     // Validate salary
     $input_mobile_no = trim($_POST["mobile_no"]);
     if(empty($input_mobile_no)){

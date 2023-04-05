@@ -43,9 +43,9 @@ CREATE TABLE `act` (
   `reason` varchar(50) DEFAULT NULL,
   `conversion` varchar(50) DEFAULT NULL,
   `remarks` varchar(50) DEFAULT NULL,
-  `intime` varchar(10) NOT NULL,
-  `time` text NOT NULL,
-  `user` varchar(10) NOT NULL,
+  `intime` varchar(10)  DEFAULT NULL,
+  `time` text  DEFAULT NULL,
+  `user` varchar(10)   DEFAULT NULL,
   PRIMARY KEY (`actid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -205,7 +205,7 @@ DROP TABLE IF EXISTS `executive`;
 CREATE TABLE `executive` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `status` int NOT NULL DEFAULT '1',
+  `status` int DEFAULT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -229,16 +229,16 @@ DROP TABLE IF EXISTS `followup`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `followup` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `castid` varchar(10) NOT NULL,
-  `castname` varchar(50) NOT NULL,
-  `cast_mob` varchar(10) NOT NULL,
-  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `updated_by` varchar(20) NOT NULL,
-  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
-  `date` timestamp NOT NULL,
-  `remarks_his` varchar(5000) NOT NULL,
-  `createdby` varchar(30) NOT NULL,
-  `createdat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `castid` varchar(10) DEFAULT NULL,
+  `castname` varchar(50) DEFAULT NULL,
+  `cast_mob` varchar(10) DEFAULT NULL,
+  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `updated_by` varchar(20) DEFAULT NULL,
+  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL DEFAULT '1',
+  `date` timestamp DEFAULT NULL,
+  `remarks_his` varchar(5000) DEFAULT NULL,
+  `createdby` varchar(30) DEFAULT NULL,
+  `createdat` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastact` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -287,14 +287,14 @@ DROP TABLE IF EXISTS `notification`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notification` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `exptime` timestamp NOT NULL,
-  `sub` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `msg` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `user` varchar(1000) NOT NULL,
-  `ack` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `fromuser` varchar(30) NOT NULL,
-  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '1',
+  `time` timestamp DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
+  `exptime` timestamp DEFAULT NULL,
+  `sub` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `msg` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user` varchar(1000) DEFAULT NULL,
+  `ack` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `fromuser` varchar(30) DEFAULT NULL,
+  `status` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
