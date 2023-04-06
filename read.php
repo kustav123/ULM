@@ -626,7 +626,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
       if(!empty($tos) && !empty($froms) ){
         
           // Prepare an insert statement
-          $sql = "SELECT date , type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Yes' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? GROUP by date , Type; ";
+          $sql = "SELECT date , type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? GROUP by date , Type; ";
           
   
   
@@ -785,7 +785,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
           if(!empty($tos) && !empty($froms) ){
             
               // Prepare an insert statement
-              $sql = "SELECT  type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Yes' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? GROUP by  Type; ";
+              $sql = "SELECT  type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? GROUP by  Type; ";
               
       
       
