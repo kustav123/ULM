@@ -55,8 +55,8 @@ div.dataTables_length {
     <title>Sales Report</title>
     <link href="css/styles.css" rel="stylesheet" />
     <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script type="module" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   <!-- <script type="module" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script> -->
    <!-- <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet"> -->
 
 
@@ -147,8 +147,8 @@ $(document).ready(function() {
     error: function(xhr, status, error) {
       console.log(error);
 
-      // Long-poll again after an error
-      longPoll();
+     // Long-poll again after receiving the response
+     setTimeout(longPoll, 2000); // wait 1 second before next request
     }
   });
 }
