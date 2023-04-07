@@ -16,10 +16,12 @@
 // Include config file
 require_once "config.php";
 require_once "navbar.php";
-
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 // Define variables and initialize with empty values
-$cou_name = $dob = $address = $mobile_no = $mail_id = $doa_err = $dob_err = $mail_id_err ="";
-$cou_name_err = $address_err = $mobile_no_err = $mail_id_err = $doa_err = "";
+$cou_name = $doa = $dob = $address = $mobile_no = $mail_id = "";
+$cou_name_err = $address_err = $mobile_no_err = "";
  
 if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
   
@@ -31,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_cou_name = trim($_POST["cou_name"]);
     if(empty($input_cou_name)){
         $cou_name_err = "Please enter a name.";
-    } elseif(!filter_var($input_cou_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+    } elseif(!filter_var($input_cou_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s.]+$/")))){
         $cou_name_err = "Please enter a valid name.";
     } else{
         $cou_name = $input_cou_name;
@@ -43,31 +45,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $address_err = "Please enter an address.";     
     } else{
         $address = $input_address;
-        $mail_id = $input_mail_id;
-        $dob = $input_dob;
-        $doa = $input_doa;
+           }
+    
+    if(!isset($_POST["mail_id"])){
+        $mail_id = '' ;
+    } else {
+        $mail_id = trim($_POST["mail_id"]);
     }
-
-    // $input_mail_id = trim($_POST["mail_id"]);
-    // if(empty($input_mail_id)){
-    //     $mail_id_err = "Please enter an email.";     
-    // } else{
-    //     $mail_id = $input_mail_id;
-    // }
-
-    // $input_dob = trim($_POST["dob"]);
-    // if(empty($input_dob)){
-    //     $dob_err = "Please enter an DOB.";     
-    // } else{
-    //     $dob = $input_dob;
-    // }
-    // $input_doa = trim($_POST["doa"]);
-    // if(empty($input_doa)){
-    //     $doa_err = "Please enter an DOA.";     
-    // } else{
-    //     $doa = $input_doa;
-    // }
-    // Validate salary
+    if(!isset($_POST["dob"])){
+        $dob = '' ;
+    } else {
+        $dob = trim($_POST["dob"]);
+    }
+    if(!isset($_POST["doa"])){
+        $doa = '' ;
+    } else {
+        $doa = trim($_POST["doa"]);
+    }
     $input_mobile_no = trim($_POST["mobile_no"]);
     if(empty($input_mobile_no)){
         $mobile_no_err = "Please enter Mobile number.";     

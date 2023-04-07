@@ -6,7 +6,7 @@ $sql = "SELECT DATE(date) AS date, COUNT(actid) AS count FROM act GROUP BY DATE(
 $result = $link->query($sql);
 
 
-$sqlx = "SELECT date, COUNT(CASE WHEN billed = 'No' THEN 1 ELSE NULL END) AS count_no, COUNT(CASE WHEN billed = 'Yes' THEN 1 ELSE NULL END) AS count_yes FROM act GROUP BY date;";
+$sqlx = "SELECT date, COUNT(CASE WHEN billed = 'UnHappy' THEN 1 ELSE NULL END) AS count_no, COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) AS count_yes FROM act GROUP BY date;";
 $resultx = $link->query($sqlx); 
 // Store the data in arrays
 $labels = array();

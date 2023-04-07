@@ -228,7 +228,7 @@ if(isset($_GET['nid']) && $_GET['ack']){
   $q = $_GET['nid'];
   $x = $_GET['ack'];
   if(isset($q) || !empty($q)) {
-      $query = "update notification set ack=concat(ack, '$x', ',') where id = $q";
+      $query = "update notification set ack=concat(ack, '$x', ',') where id = $q and !FIND_IN_SET('$x', ack)";
       mysqli_query($link, $query);
       logActivity('Read', 'Notificaction', 'Read notification ' . $q .' by '.  $_SESSION["username"] , $_SESSION["id"] );
      

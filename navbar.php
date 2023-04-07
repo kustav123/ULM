@@ -3,7 +3,7 @@
 require_once "config.php";
 // require_once "chat.php";
 session_start();
-if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 1000) {
+if (isset($_SESSION['last_activity']) && time() - $_SESSION['last_activity'] > 300) {
   // last request was more than 15 minutes ago
   session_unset(); // unset $_SESSION variable for the run-time
   session_destroy(); // destroy session data in storage
@@ -71,7 +71,7 @@ if ($_SESSION["role"] != 1 ) {
 
 } 
 
-
+// <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 // Check if the user is logged in, if not then redirect him to login page
 
@@ -80,7 +80,7 @@ if ($_SESSION["role"] != 1 ) {
 if (!isset($_SESSION['toastShown'])) {
   echo '<head>
        
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

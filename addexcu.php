@@ -116,53 +116,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
 
-     <script type="text/javascript">
-           $(document).ready(function() {
-            var submitBtn = document.querySelector('input[type="submit"]');
-            $('#username').keyup(function() {
-                var username = $(this).val();
-                $.ajax({
-                url: 'ajax.php',
-                data: { uname: username },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.uname == 'not ok') {
-                        var errorText = document.createElement("span");
-                        errorText.textContent = "Username Allready exists!!";
-                        errorText.style.color = "red";
-                        var parentElement = document.getElementById("username").parentNode;
-                        parentElement.insertBefore(errorText, parentElement.lastChild);
-                        submitBtn.disabled = true;
-                        document.getElementById("name").value = "";
-                    } else {
-                        var existingError = document.querySelector("#username ~ span");
-                        if (existingError) {
-                        existingError.remove();
-                    }
-                    submitBtn.disabled = false;
-                            }
-                    }
-                    });
-                });
-                });
-</script>
-
-<script type="text/javascript">
-// Get references to the password input fields
-var passwordField = document.getElementById('inputPassword');
-var confirmPasswordField = document.getElementById('inputPasswordConfirm');
-
-// Add an event listener to the confirmPasswordField to check if the passwords match
-confirmPasswordField.addEventListener('input', function() {
-    if (passwordField.value !== confirmPasswordField.value) {
-        confirmPasswordField.setCustomValidity('Passwords do not match');
-    } else {
-        confirmPasswordField.setCustomValidity('');
-    }
-});
-</script>   
+  
 
     </body>
 </html>
