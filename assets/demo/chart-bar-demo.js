@@ -39,7 +39,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 20,
+          max: 40,
           maxTicksLimit: 50
         },
         gridLines: {
@@ -54,7 +54,7 @@ var myBarChart = new Chart(ctx, {
 });
 
 // Fetch data from API and update chart
-fetch('fetch_data')
+fetch('fetch_data.php')
   .then(response => response.json())
   .then(data => {
     myBarChart.data.labels = data.labelsx;

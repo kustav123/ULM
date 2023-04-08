@@ -37,13 +37,13 @@ fetch('fetch_data.php')
               display: false
             },
             ticks: {
-              maxTicksLimit: 20
+              maxTicksLimit: 40
             }
           }],
           yAxes: [{
             ticks: {
               min: 0,
-              max: 20,
+              max: 40,
               maxTicksLimit: 5
             },
             gridLines: {
