@@ -56,17 +56,12 @@ div.dataTables_length {
     <link href="css/styles.css" rel="stylesheet" />
     <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 <script  src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
   <!--  <script type="module" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
 
 
-=======
->>>>>>> a4606cb2b06cb6f69e4d55ee324325bea6bd4001
-=======
->>>>>>> a4606cb2b06cb6f69e4d55ee324325bea6bd4001
    <!-- <script type="module" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script> -->
    <!-- <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet"> -->
 
