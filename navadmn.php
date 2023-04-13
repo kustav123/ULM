@@ -308,13 +308,14 @@ function format ( d ) {
     
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-lg-0">
-        <li class="nav-item">
+    <li class="nav-item">
             <div class="input-group">
               
-            <button class="btn btn-link" type="button" id="groupChatModalBtn" data-bs-toggle="modal" data-bs-target="#chat-modal"><i class="fas fa-comments"></i></button>
-            <button class="btn btn-link" type="button" id="inboxModalBtn" data-bs-toggle="modal" data-bs-target="#inboxModal"><i class="fas fa-bell"></i></button>
+            <button class="btn btn-link" type="button" id="groupChatModalBtn" data-bs-toggle="modal" data-bs-target="#chat-modal"><i class="fas fa-comments"></i></button></li>
+
+            <li class="nav-item"><button class="btn btn-link" type="button" id="inboxModalBtn" data-bs-toggle="modal" data-bs-target="#inboxModal"><i class="fas fa-bell"></i></button></li>
             </div>
-        </li>
+        
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user  fa-fw  text-white"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
