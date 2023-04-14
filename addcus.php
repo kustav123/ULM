@@ -69,6 +69,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $mobile_no_err = "Please enter a Mobile number.";
     } else{
         $mobile_no = $input_mobile_no;
+        $code = trim($_POST["ccode"]);
+        $mobile_no = $code . $mobile_no;
     }
     
     // Check input errors before inserting in database
@@ -125,6 +127,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                            <div class="form-group">
                                             
                                            <div class="row">
+                                           <div class="col-2">
+                                           <label for="ccode">Code</label>
+                                           <select id="ccode" name="ccode" placeholder="Code" input
+                                                        class="form-control">
+                                                        <option selected>+91</option>
+                                                        <option>+1</option>
+                                                        <option>+44</option>
+                                                    </select>
+                                            </div> 
+
                                                 <div class="col">
                                                 <label>Mobile</label>
                                                 <input type="text" maxlength="20" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" name="mobile_no" id="mobile_no" class="form-control <?php echo (!empty($mobile_no_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $mobile_no; ?>">
@@ -140,8 +152,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Address</label>
-                                                <textarea name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>"><?php echo $address; ?></textarea>
+
+                                            <label>Address</label>
+                                                <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
                                                 <span class="invalid-feedback"><?php echo $address_err;?></span>
                                             </div>
                                             

@@ -51,6 +51,8 @@ require_once "navbar.php";
                                         echo "<th>#</th>";
                                         echo "<th>Name</th>";
                                         echo "<th>Address</th>";
+                                        echo "<th>state</th>";
+                                        echo "<th>country</th>";
                                         echo "<th>Mobile</th>";
                                         echo "<th>Email</th>";
                                         echo "<th>DOB</th>";
@@ -65,6 +67,8 @@ require_once "navbar.php";
                                         echo "<td>" . $row['id'] . "</td>";
                                         echo "<td>" . $row['cou_name'] . "</td>";
                                         echo "<td>" . $row['address'] . "</td>";
+                                        echo "<td>" . $row['state'] . "</td>";
+                                        echo "<td>" . $row['country'] . "</td>";
                                         echo "<td>" . $row['mobile_no'] . "</td>";
                                         echo "<td>" . $row['mail_id'] . "</td>";
                                         echo "<td>" . $row['dob'] . "</td>";
@@ -73,7 +77,7 @@ require_once "navbar.php";
 
                                         echo "<td>";
                                             echo '<a href="read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye fa-beat"></i>"></span></a>';
-                                            // echo '&nbsp&nbsp<a href="update_cas.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil fa-beat"></span></a>';
+                                            echo '&nbsp<a href="update_cas.php?uid='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil fa-beat"></span></a>';
                                             echo '&nbsp<a href="ajax.php?DND=Yes&id='. $row['id'] .' " title="Start DND" data-toggle="tooltip"><span class="fa fa-ban fa-beat" style="color: #ea1506;"></span></a>';
                                             echo '&nbsp<a href="ajax.php?DND=No&id='. $row['id'] .' " title="Start DND" data-toggle="tooltip"><span class="fa fa-phone fa-beat" style="color: #a2ee02;"></span></a>';
 
