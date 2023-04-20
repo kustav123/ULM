@@ -264,7 +264,7 @@ if (!empty($_POST["mobile_no"])) {
                                             <div class="row justify-content-center">
                                                 <div class="col-md-auto">
                                                     <input type="submit" class="btn btn-primary" value="Submit">
-                                                    <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                                    <a href="cad.php" class="btn btn-secondary ml-2">Cancel</a>
                                                 </div>
                                             </div>
 

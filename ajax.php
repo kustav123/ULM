@@ -311,4 +311,72 @@ if(isset($_GET['DND'])){
       </script>';
 }
 }
+
+if(isset($_GET['term'])){
+  $searchTerm = $_GET['term'];
+  $query = $link->query("SELECT * FROM country WHERE country_name LIKE '%".$searchTerm."%' AND status = 1 ORDER BY country_name ASC"); 
+ 
+// Generate array with skills data 
+$skillData = array(); 
+if($query->num_rows > 0){ 
+    while($row = $query->fetch_assoc()){ 
+        $data['id'] = $row['id']; 
+        $data['value'] = $row['country_name']; 
+        array_push($skillData, $data); 
+    } 
+} 
+ 
+// Return results as json encoded array 
+echo json_encode($skillData);
+}
+
+
+
+$conn = $link;
+if (! empty($_POST["keyword"])) {
+  $sql = $conn->prepare("SELECT * FROM country WHERE country_name LIKE  ? AND status=1 ORDER BY country_name LIMIT 0,6");
+  $search = "{$_POST['keyword']}%";
+  $sql->bind_param("s", $search);
+  $sql->execute();
+  $result = $sql->get_result();
+  if (! empty($result)) {
+      ?>
+<ul id="country-list">
+<?php
+      foreach ($result as $country) {
+          ?>
+ <li onClick="selectCountry('<?php echo $country["country_name"]; ?>');">
+    <?php echo $country["country_name"]; ?>
+  </li>
+<?php
+      }// end for
+  ?>
+</ul>
+  <?php
+  }// end if not empty
+}
+
+$conn = $link;
+if (! empty($_POST["keystate"])) {
+  $sql = $conn->prepare("SELECT * FROM state WHERE state_name LIKE  ? AND status=1 ORDER BY state_name LIMIT 0,6");
+  $search = "{$_POST['keystate']}%";
+  $sql->bind_param("s", $search);
+  $sql->execute();
+  $result = $sql->get_result();
+  if (! empty($result)) {
+      ?>
+<ul id="state-list">
+<?php
+      foreach ($result as $state) {
+          ?>
+ <li onClick="selectState('<?php echo $state["state_name"]; ?>');">
+    <?php echo $state["state_name"]; ?>
+  </li>
+<?php
+      }// end for
+  ?>
+</ul>
+  <?php
+  }// end if not empty
+}
 ?>

@@ -39,6 +39,8 @@ $response = array("labels" => $labels, "data" => $data , "labelsx" => $labelsx, 
 echo json_encode($response);
 
 
+
+
 ?>
 
  

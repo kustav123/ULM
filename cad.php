@@ -50,7 +50,7 @@ require_once "navbar.php";
                                     echo "<tr >";
                                         echo "<th>#</th>";
                                         echo "<th>Name</th>";
-                                        echo "<th>Address</th>";
+                                        echo "<th>City</th>";
                                         echo "<th>state</th>";
                                         echo "<th>country</th>";
                                         echo "<th>Mobile</th>";

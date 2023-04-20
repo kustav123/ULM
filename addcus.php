@@ -10,6 +10,114 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+        <style>
+.frmSearch {
+    border: 1px solid #a8d4b1;
+    background-color: #c6f7d0;
+    margin: 2px 0px;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+#country-list {
+    float: left;
+    list-style: none;
+    margin-top: -3px;
+    margin-left: 3px;
+    padding: 0;
+    width: 170px;
+    color: black;
+    position: absolute;
+    z-index: 1;
+}
+
+#country-list li {
+    padding: 10px;
+    background: #f0f0f0;
+    border-bottom: #bbb9b9 1px solid;
+}
+
+#country-list li:hover {
+    background: #ece3d2;
+    cursor: pointer;
+}
+#state-list {
+    float: left;
+    list-style: none;
+    margin-top: -3px;
+    margin-left: 3px;
+    padding: 0;
+    width: 170px;
+    color: black;
+    position: absolute;
+    z-index: 1;
+}
+
+#state-list li {
+    padding: 10px;
+    background: #f0f0f0;
+    border-bottom: #bbb9b9 1px solid;
+}
+
+#state-list li:hover {
+    background: #ece3d2;
+    cursor: pointer;
+}
+/* #search-box {
+    padding: 10px;
+    border: #a8d4b1 1px solid;
+    border-radius: 4px; 
+} */
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+    $("#country").keyup(function() {
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: 'keyword=' + $(this).val(),
+            beforeSend: function() {
+                $("#country");
+            },
+            success: function(data) {
+                $("#suggesstion-box").show();
+                $("#suggesstion-box").html(data);
+                $("#country");
+            }
+        });
+    });
+});
+function selectCountry(val) {
+    $("#country").val(val);
+    $("#suggesstion-box").hide();
+}
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#state").keyup(function() {
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: 'keystate=' + $(this).val(),
+            beforeSend: function() {
+                $("#state");
+            },
+            success: function(data) {
+                $("#suggesstion-bo").show();
+                $("#suggesstion-bo").html(data);
+                $("#state");
+            }
+        });
+    });
+});
+function selectState(val) {
+    $("#state").val(val);
+    $("#suggesstion-bo").hide();
+}
+</script>
     </head>
     
             <?php
@@ -62,6 +170,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         $doa = trim($_POST["doa"]);
     }
+    if(!isset($_POST["state"])){
+        $state = '' ;
+    } else {
+        $state = trim($_POST["state"]);
+    } if(!isset($_POST["country"])){
+        $country = '' ;
+    } else {
+        $country = trim($_POST["country"]);
+    }
     $input_mobile_no = trim($_POST["mobile_no"]);
     if(empty($input_mobile_no)){
         $mobile_no_err = "Please enter Mobile number.";     
@@ -76,11 +193,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($cou_name_err) && empty($address_err) && empty($mobile_no_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO coustomeradd (cou_name, address, mobile_no, mail_id, dob, doa) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO coustomeradd (cou_name, address, state, country, mobile_no, mail_id, dob, doa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters 
-            mysqli_stmt_bind_param($stmt, "ssssss", $param_cou_name, $param_address, $param_mobile_no, $param_mail_id, $param_dob, $param_doa);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_cou_name, $param_address, $state, $country, $param_mobile_no, $param_mail_id, $param_dob, $param_doa);
             
             // Set parameters
             $param_cou_name = $cou_name;
@@ -96,8 +213,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // header("Location: seals.php?mob=$mobile_no");
                 logActivity('Add', 'Customer', 'Created Customer ' . $cou_name .' by '.  $_SESSION["username"] , $_SESSION["id"] );
 
+                if (strstr($_SERVER['HTTP_REFERER'] , 'http://localhost/ulm/exci.php')) {
+                    echo("<script>location.href = '/ulm/abc.php?mob=$mobile_no';</script>");
+                }  else {            
                 echo("<script>location.href = '/ulm/in.php?mob=$mobile_no';</script>");
-
+                }
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -126,66 +246,135 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                            <div class="form-group">
                                             
-                                           <div class="row">
-                                           <div class="col-2">
-                                           <label for="ccode">Code</label>
-                                           <select id="ccode" name="ccode" placeholder="Code" input
+                                           <div class="row mb-3">
+                                           <div class="col-md-2">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                    <select id="ccode" name="ccode" placeholder="Code" input
                                                         class="form-control">
                                                         <option selected>+91</option>
                                                         <option>+1</option>
                                                         <option>+44</option>
                                                     </select>
-                                            </div> 
+                                                    <label for="ccode">Code</label>
+                                                </div>
+                                            </div>
 
-                                                <div class="col">
-                                                <label>Mobile</label>
-                                                <input type="text" maxlength="20" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" name="mobile_no" id="mobile_no" class="form-control <?php echo (!empty($mobile_no_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $mobile_no; ?>">
-                                                <span class="invalid-feedback"><?php echo $mobile_no_err;?></span>
-                                            </div> 
-                                           
-                                            <div class="col">
-                                             <div class="form-group">
-                                                <label>Name</label>
-                                                <input type="text" name="cou_name" class="form-control <?php echo (!empty($cou_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cou_name; ?>">
-                                                <span class="invalid-feedback"><?php echo $cou_name_err;?></span>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <div class="form-group">
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3 mb-md-0">
 
-                                            <label>Address</label>
-                                                <input type="text" name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
-                                                <span class="invalid-feedback"><?php echo $address_err;?></span>
+                                                    <input type="text" id="mobile_no"
+                                                        name="mobile_no" placeholder="Mobile" input class="form-control <?php echo (!empty($mobile_no_err)) ? 'is-invalid' : ''; ?>"
+                                                        value="<?php echo $mobile_no; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $mobile_no_err; ?>
+                                                    </span>
+                                                    <label for="mobile_no">Mobile</label>
+                                                </div>
                                             </div>
-                                            
-                    
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="email" name="mail_id" class="form-control <?php echo (!empty($mail_id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $mail_id; ?>">
-                                                <span class="invalid-feedback"><?php echo $mail_id_err;?></span>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                            <div class="form-group">
-                                                <label>Date of birth</label>
-                                                <input type="date" name="dob" class="form-control <?php echo (!empty($dob_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dob; ?>">
-                                                <span class="invalid-feedback"><?php echo $dob_err;?></span>
-                                            </div>
-                                            </div>
-                                            
-                                            <div class="col">
-                                            <div class="form-group">
-                                                <label>Date of anniversary</label>
-                                                <input type="date" name="doa" class="form-control <?php echo (!empty($doa_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $doa; ?>">
-                                                <span class="invalid-feedback"><?php echo $doa_err;?></span>
-                                            </div>
-                                            </div>
-                                           </div>
 
-                                        </br><input type="submit" class="btn btn-primary" value="Submit">
-                                            <a href="addcus.php" class="btn btn-secondary ml-2">Cancel</a>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
 
-                                      </form>
+                                                    <input type="text" id="cou_name"
+                                                        name="cou_name" placeholder="Name" input class="form-control <?php echo (!empty($cou_name_err)) ? 'is-invalid' : ''; ?>"
+                                                        value="<?php echo $cou_name; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $cou_name_err; ?>
+                                                    </span>
+                                                    <label for="cou_name">Name</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3 mb-md-0">
+
+                                                <input type="text" id="newpass" name="address"
+                                                    placeholder="Address" input class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $address; ?>">
+                                                <span class="invalid-feedback">
+                                                    <?php echo $address_err; ?>
+                                                </span>
+                                                <label for="address">City</label>
+                                            </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                    <input type="text" id="state"
+                                                        name="state" placeholder="State" input class="form-control <?php echo (!empty($cou_name_err)) ? 'is-invalid' : ''; ?>"
+                                                        value="<?php echo $cou_name; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $cou_name_err; ?>
+                                                    </span>
+                                                    <div id="suggesstion-bo"></div>
+                                                    <label for="state">State</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                    <input type="text" id="country"
+                                                        name="country" placeholder="Country" input class="form-control <?php echo (!empty($cou_name_err)) ? 'is-invalid' : ''; ?>"
+                                                        value="<?php echo $cou_name; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $cou_name_err; ?>
+                                                    </span>
+                                                    <div id="suggesstion-box"></div>
+                                                    <label for="country">Country</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                    <input type="email" id="mail_id"
+                                                        name="mail_id" placeholder="E-mail" input class="form-control <?php echo (!empty($mail_id_err)) ? 'is-invalid' : ''; ?>"
+                                                        value="<?php echo $mail_id; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $mail_id_err; ?>
+                                                    </span>
+                                                    <label for="mail_id">E-mail</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                    <input type="date" id="dob" name="dob"
+                                                        placeholder="Date of birth" input class="form-control <?php echo (!empty($dob_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dob; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $dob_err; ?>
+                                                    </span>
+                                                    <label for="dob">Date of birth</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                    <input type="date" id="doa" name="doa"
+                                                        placeholder="Date of anniversary" input class="form-control <?php echo (!empty($doa_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $doa; ?>">
+                                                    <span class="invalid-feedback">
+                                                        <?php echo $doa_err; ?>
+                                                    </span>
+                                                    <label for="doa">Date of anniversary</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-auto">
+                                                <input type="submit" class="btn btn-primary" value="Submit">
+                                                <a href="addcus.php" class="btn btn-secondary ml-2">Cancel</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
                                     </div>
                                     <!-- <div class="card-footer text-center py-3">
                                         <div class="small"><a href="register.html">Need an account? Sign up!</a></div>

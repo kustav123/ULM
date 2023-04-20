@@ -96,7 +96,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;   
-                            $_SESSION["role"] = $role;                        
+                            $_SESSION["role"] = $role;    
+                            mysqli_query($link, "UPDATE users SET onstatus = '1' WHERE id = {$_SESSION['id']}");                   
                             logActivity('Login', 'Logedin', 'User ' .  $_SESSION["username"] . ' Logedin from ' . $_SERVER["REMOTE_ADDR"] , $_SESSION["id"] );
 
                             // Redirect user to welcome page
@@ -109,7 +110,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;   
-                            $_SESSION["role"] = $role;                        
+                            $_SESSION["role"] = $role;   
+                            mysqli_query($link, "UPDATE users SET onstatus = '1' WHERE id = {$_SESSION['id']}");                     
                             logActivity('Login', 'Logedin', 'User ' .  $_SESSION["username"] . ' Logedin from ' . $_SERVER["REMOTE_ADDR"] , $_SESSION["id"] );
 
                             // Redirect user to welcome page

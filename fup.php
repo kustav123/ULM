@@ -23,10 +23,10 @@
    <div id="layoutSidenav_content">
       <div class="container">
          <div class="row justify-content-center">
-            <div class="col-lg-10">
-               <div class="card-auto shadow-lg bg-info border-0 rounded-lg mt-5">
+            <div class="col-lg-12">
+               <div class="card shadow-lg bg-info text-white border-0 rounded-lg mt-5">
                   <div class="card-header">
-                     <h3 class="text-center font-weight-light my-4 text-info">Follow Up</h3>
+                     <h3 class="text-center font-weight-light">Follow Up</h3>
                   </div>
                   <div class="card-body">
                      <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -211,7 +211,7 @@
                                  <?php
                                     // Include config file
                                     // Attempt select query execution
-                                    $sql = "SELECT * FROM followup where status = '1' and date(date) > DATE_ADD(CURDATE(), INTERVAL 2 DAY);;";
+                                    $sql = "SELECT * FROM followup where status = '1' and date(date) > DATE_ADD(CURDATE(), INTERVAL 1 DAY);";
                                     $record = "SELECT count(*) FROM followup";
                                     
                                     if($result = mysqli_query($link, $sql)){
