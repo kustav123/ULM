@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Coustomer Database</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <style>
-            .scroll {
-    max-height: 100%;
-    overflow-y: auto;
-          }
-          </style>
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Coustomer Database</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+    .scroll {
+        max-height: 100%;
+        overflow-y: auto;
+    }
+    </style>
+</head>
+
+<body>
     <?php
 require_once "navbar.php";
 ?>
 
 
-            <div id="layoutSidenav_content"> 
-            <div id="layoutAuthentication_content"> 
-            <main>        
-            <div class="container"> 
-            <div class="row justify-content-center"> 
-            <div class="col-lg-12">
+    <div id="layoutSidenav_content">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
 
-            <?php
+                            <?php
                     $from = "" ;
                     // Include config file
                     require_once "config.php";
@@ -45,7 +48,7 @@ require_once "navbar.php";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                           echo '<div id="myTableWrapper">' ;
-                          echo '<table class="table table-bordered table-striped table-sm" cellspacing="0" width="100%">';                             
+                          echo '<table class="table table-bordered text-white table-sm" cellspacing="0" width="100%">';                             
                              echo '<thead class="thead-dark">';
                                     echo "<tr >";
                                         echo "<th>#</th>";
@@ -69,7 +72,7 @@ require_once "navbar.php";
                                         echo "<td>" . $row['address'] . "</td>";
                                         echo "<td>" . $row['state'] . "</td>";
                                         echo "<td>" . $row['country'] . "</td>";
-                                        echo "<td>" . $row['mobile_no'] . "</td>";
+                                        echo "<td>" . $row['ccode'] . $row['mobile_no'] . "</td>";
                                         echo "<td>" . $row['mail_id'] . "</td>";
                                         echo "<td>" . $row['dob'] . "</td>";
                                         echo "<td>" . $row['doa'] . "</td>";
@@ -89,9 +92,9 @@ require_once "navbar.php";
                             echo "</table>";
                             
                             echo '</div>';
-                            echo '<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>';
-  echo '<script src="https:////cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>';
-  echo '<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">';
+                            echo '<script src="js/table.js"></script>';
+  echo '<script src="js/tablesty.js"></script>';
+  echo '<link rel="stylesheet" type="text/css" href="css/tablesty.css">';
 
   // initialize DataTables
   echo '<script>
@@ -115,30 +118,33 @@ require_once "navbar.php";
                     // Close connection
                     mysqli_close($link);
                     ?>
-            </div>
-           </div>
-         </div>
-      </main>
-      </div>
-
-      <div id="layoutAuthentication_footer">
-      <footer class="py-4 bg-black mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
                         </div>
                     </div>
-                </footer>
-            </div>
+                    </div>
+                </div>
+            </main>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
+
+        <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-black mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+</body>
+
 </html>

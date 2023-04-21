@@ -122,6 +122,16 @@ require_once "navbar.php";
                                     <div class="card-header text-white">
                                         <i class="fas fa-chart-area me-1"></i>
                                         Customer visit 
+                                        <from>
+                                <div class="col-md-2 position-absolute top-0 end-0">
+                                <select id="daylimit" name="daylimit" placeholder="daylimit" input
+                                                        class="form-control">
+                                                        <option selected>last 7 days</option>
+                                                        <option>last 15 days</option>
+                                                        <option>last 30 days</option>
+                                                    </select>
+                                </div>
+                                </from>
                                     </div>
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="15"></canvas></div>
                                 </div>

@@ -106,49 +106,76 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()">
                                           <input type="hidden" name="id" class="form-control" id="id" >
 
-                                             <div class="row">
-                                                <div class="col">
-                                                   <label for="inputmob">Mobile</label>
-                                                   <input type="text" class="form-control <?php echo (!empty($cou_mob_err)) ? 'is-invalid' : ''; ?>" id="inputmob" value="<?php echo $inputmob; ?>"  name="inputmob" >
+                                          <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                   
+                                                   <input type="text" id="inputmob" name="inputmob"
+                                                        placeholder="Mobile No" input
+                                                        class="form-control <?php echo (!empty($cou_mob_err)) ? 'is-invalid' : ''; ?>" id="inputmob" value="<?php echo $inputmob; ?>"  name="inputmob" >
                                                    <span class="invalid-feedback"><?php echo $cou_mob_err;?></span>
+                                                   <label for="inputmob">Mobile</label>
 
                                                 </div>
-                                                <div class="col">
-                                                  <label for="name">Name</label>
-                                                  <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" id="name" name="name" readonly>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                  
+                                                  <input type="text" id="name" name="name" placeholder="Name" 
+                                                  class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" id="name" name="name" readonly>
                                                   <span class="invalid-feedback"><?php echo $name_err;?></span>
+                                                  <label for="name">Name</label>
                                                 </div>
                                              </div>
+                                             </div>
 
-                                          <div class="row">
-                                            <div class="col">
-                                                 <label for="tgi">Total group ins</label>
-                                                 <select id="tgi" class="form-control" name='tgi'>
-                                                 <option selected>1</option>
-                                                 <option>2</option>
-                                                 </select>
+                                             <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                 
+                                                <select id="tgi" name="tgi" placeholder="Total group in" input
+                                                        class="form-control">
+                                                        <option selected>1</option>
+                                                        <option>2</option>
+                                                    </select>
+                                                    <label for="tgi">Total group in</label>
+                                            </div>
                                             </div>
                                               
-                                            <div class="col">
-                                              <label for="thc">Total head count</label>
-                                              <input type="number" class="form-control" id="thc" placeholder="1" name= 'thc'>
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                <input type="number" id="thc" name="thc"
+                                                        placeholder="Total head count" input class="form-control">
+                                                    <label for="thc">Total head count</label>
                                             </div>
                                          </div>
-                                         <div class="row">
-                                            <div class="col">
-                                                <label for="time">Entry Time</label>
-                                                <input type="time" class="form-control <?php echo (!empty($cou_time_err)) ? 'is-invalid' : ''; ?>" id="time" name='time'>
+                                         </div>
+
+                                         <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+
+                                                <input type="time" id="time" name="time" placeholder="Store Entry Time" input
+                                                class="form-control <?php echo (!empty($cou_time_err)) ? 'is-invalid' : ''; ?>" id="time" name='time'>
                                                 <span class="invalid-feedback"><?php echo $cou_time_err;?></span>
+                                                <label for="time">Entry Time</label>
 
                                               </div>
-                                              <div class="col">
-                                                   <label for="type">Type</label>
+                                              </div>
+                                              
+                                               <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                                   
                                                    <select id="type" class="form-control" name='type'>
                                                    <option selected>Gold</option>
                                                    <option>Diamond</option>
                                                    <option>Silver</option>
                                                    </select>
+                                                   <label for="type">Type</label>
                                                  </div>
+                                            </div>
                                             </div>
                                         </br>
 

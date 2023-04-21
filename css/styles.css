@@ -2121,7 +2121,7 @@ progress {
 .form-control:focus,
 .dataTable-input:focus {
   color: #212529;
-  background-color: rgba(255, 255, 255, 0.747);
+  background-color: rgba(161, 153, 153, 0.63);
   border-color: rgba(32, 32, 32, 0.897);
   outline: 0;
   box-shadow: 0 0 0 0.35rem rgba(226, 228, 231, 0.25);
@@ -2154,7 +2154,7 @@ progress {
 .dataTable-input:disabled,
 .form-control[readonly],
 [readonly].dataTable-input {
-  background-color: #13131379;
+  background-color: #6e6a6a80;
   opacity: 1;
 }
 
@@ -2643,7 +2643,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-moz-range-thumb:active {
-  background-color: #b6d4fe;
+  background-color: #aac4e9d7;
 }
 
 .form-range::-moz-range-track {
