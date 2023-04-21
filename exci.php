@@ -273,7 +273,7 @@ document.getElementById("inputmob").addEventListener("blur", function() {
       var data = JSON.parse(this.responseText);
       if (data.name == "No Data") {
         // if the response indicates no data, redirect to add.php
-        window.location.href = "addcus.php?mob=" + mobile;
+        window.location.href = "addcus.php?type=ex&mob=" + mobile;
       } else if (data.status == "in") {
         // if the response indicates that the customer is already inside the store, display an error message and disable the submit button
         var errorText = document.createElement("span");

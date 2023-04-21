@@ -134,6 +134,7 @@ $cou_name_err = $address_err = $mobile_no_err = "";
 if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
   
   $mobile_no = trim($_GET["mob"]) ;
+  $type = trim($_GET["type"]) ;
 }
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -187,6 +188,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $mobile_no = $input_mobile_no;
         $code = trim($_POST["ccode"]);
+        $type = trim($_POST["type"]) ;
         // $mobile_no = $code . $mobile_no;
     }
     
@@ -212,13 +214,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Records created successfully. Redirect to landing page
                 // header("Location: seals.php?mob=$mobile_no");
                 logActivity('Add', 'Customer', 'Created Customer ' . $cou_name .' by '.  $_SESSION["username"] , $_SESSION["id"] );
-
-                if (strstr($_SERVER['HTTP_REFERER'] , 'http://localhost/ulm/exci.php')) {
-                    echo("<script>location.href = '/ulm/abc.php?mob=$mobile_no';</script>");
+                // echo $_SERVER['HTTP_REFERER'];
+                if( $type == "new" )  {
+                    echo("<script>location.href = '/ulm/in.php?mob=$mobile_no';</script>");
+                    // echo $type ;
                 }  else {            
-                echo("<script>location.href = '/ulm/in.php?mob=$mobile_no';</script>");
+                echo("<script>location.href = '/ulm/exci.php?mob=$mobile_no';</script>");
+                // echo $type ;
                 }
-                exit();
+                // exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -244,6 +248,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="card-body">
                                         
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                    <input type="hidden" name="type" class="form-control" id="type" value="<?php echo $type ?>">
                                            <div class="form-group">
                                             
                                            <div class="row mb-3">
