@@ -1,13 +1,17 @@
 <?php
 require_once 'config.php';
-
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 $day = $_GET['daylimit'];
-$sql = "SELECT DATE(date) AS date, COUNT(actid) AS count FROM act WHERE date >= DATE(NOW() - INTERVAL " . $day . " DAY) GROUP BY DATE(date) ORDER BY DATE(date)";
+$store = $_GET['store'];
+
+$sql = "SELECT DATE(date) AS date, COUNT(actid) AS count FROM act WHERE date >= DATE(NOW() - INTERVAL " . $day . " DAY) and store = '" . $store . "'  GROUP BY DATE(date) ORDER BY DATE(date)";
 
 $result = $link->query($sql);
 
 
-$sqlx = "SELECT date, COUNT(CASE WHEN billed = 'UnHappy' THEN 1 ELSE NULL END) AS count_no, COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) AS count_yes FROM act WHERE date >= DATE(NOW() - INTERVAL " . $day . " DAY) GROUP BY date;";
+$sqlx = "SELECT date, COUNT(CASE WHEN billed = 'UnHappy' THEN 1 ELSE NULL END) AS count_no, COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) AS count_yes FROM act WHERE date >= DATE(NOW() - INTERVAL " . $day . " DAY) and  store = '" . $store . "' GROUP BY date;";
 $resultx = $link->query($sqlx); 
 // Store the data in arrays
 $labels = array();

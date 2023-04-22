@@ -133,8 +133,8 @@ require_once "navbar.php";
                                         </div>
                                         <div class="col-md-2">
                                         <select id="store" name="store" class="form-control">
-                                            <option value="1">Hyderabad</option>
-                                            <option value="2">Vijayawada</option>
+                                        <option value="HYD">Hyderabad</option>
+                                        <option value="VIJ">Vijayawada</option>
                                         </select>
                                         </div>
                                     </div>
@@ -163,8 +163,8 @@ require_once "navbar.php";
                                                 </div>
                                                 <div class="col-md-2">
                                                     <select id="storex" name="storex" class="form-control">
-                                                        <option value="1">Hyderabad</option>
-                                                        <option value="2">Vijayawada</option>
+                                                        <option value="HYD">Hyderabad</option>
+                                                        <option value="VIJ">Vijayawada</option>
                                                     </select>
                                                 </div>
                                             </div>
