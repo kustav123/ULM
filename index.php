@@ -119,33 +119,64 @@ require_once "navbar.php";
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card mb-4">
-                                    <div class="card-header text-white">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Customer visit 
-                                        <from>
-                                <div class="col-md-2 position-absolute top-0 end-0">
-                                <select id="daylimit" name="daylimit" placeholder="daylimit" input
-                                                        class="form-control">
-                                                        <option selected>last 7 days</option>
-                                                        <option>last 15 days</option>
-                                                        <option>last 30 days</option>
-                                                    </select>
-                                </div>
-                                </from>
+                                <div class="card-header text-white">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    Customer visit
+                                    <form>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                        <select id="daylimit" name="daylimit" class="form-control">
+                                            <option value="7">Last 7 days</option>
+                                            <option value="15">Last 15 days</option>
+                                            <option value="30">Last 30 days</option>
+                                        </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                        <select id="store" name="store" class="form-control">
+                                            <option value="1">Hyderabad</option>
+                                            <option value="2">Vijayawada</option>
+                                        </select>
+                                        </div>
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="15"></canvas></div>
+                                    </form>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myAreaChart" width="100%" height="15"></canvas>
+                                </div>
                                 </div>
                             </div>
+                            </div>
+
                             <div class="col-md-12">
                                 <div class="card mb-4">
                                     <div class="card-header text-white">
                                         <i class="fas fa-chart-bar me-1"></i>
                                         Happy vs UnHappy 
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <select id="daylimitx" name="daylimitx" class="form-control">
+                                                        <option value="7">Last 7 days</option>
+                                                        <option value="15">Last 15 days</option>
+                                                        <option value="30">Last 30 days</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <select id="storex" name="storex" class="form-control">
+                                                        <option value="1">Hyderabad</option>
+                                                        <option value="2">Vijayawada</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="15"></canvas></div>
+                                    <div class="card-body">
+                                        <canvas id="myBarChart" width="100%" height="15"></canvas>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+
                         
                                 
                             

@@ -1,12 +1,13 @@
 <?php
 require_once 'config.php';
 
+$day = $_GET['daylimit'];
+$sql = "SELECT DATE(date) AS date, COUNT(actid) AS count FROM act WHERE date >= DATE(NOW() - INTERVAL " . $day . " DAY) GROUP BY DATE(date) ORDER BY DATE(date)";
 
-$sql = "SELECT DATE(date) AS date, COUNT(actid) AS count FROM act GROUP BY DATE(date) order by DATE(date)";
 $result = $link->query($sql);
 
 
-$sqlx = "SELECT date, COUNT(CASE WHEN billed = 'UnHappy' THEN 1 ELSE NULL END) AS count_no, COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) AS count_yes FROM act GROUP BY date;";
+$sqlx = "SELECT date, COUNT(CASE WHEN billed = 'UnHappy' THEN 1 ELSE NULL END) AS count_no, COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) AS count_yes FROM act WHERE date >= DATE(NOW() - INTERVAL " . $day . " DAY) GROUP BY date;";
 $resultx = $link->query($sqlx); 
 // Store the data in arrays
 $labels = array();
