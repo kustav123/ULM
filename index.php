@@ -132,10 +132,22 @@ require_once "navbar.php";
                                         </select>
                                         </div>
                                         <div class="col-md-2">
-                                        <select id="store" name="store" class="form-control">
-                                        <option value="HYD">Hyderabad</option>
-                                        <option value="VIJ">Vijayawada</option>
-                                        </select>
+                                        <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="store" name="store" class="form-control">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+ 
+                                                 ?>  
                                         </div>
                                     </div>
                                     </form>
@@ -162,10 +174,27 @@ require_once "navbar.php";
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <select id="storex" name="storex" class="form-control">
-                                                        <option value="HYD">Hyderabad</option>
-                                                        <option value="VIJ">Vijayawada</option>
-                                                    </select>
+                                                    <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="storex" name="storex" class="form-control">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+
+                                                 ?>  
+
+
+                                                        <!-- <option value="HYD">Hyderabad</option>
+                                                        <option value="VIJ">Vijayawada</option> -->
+                                                    
                                                 </div>
                                             </div>
                                         </form>
