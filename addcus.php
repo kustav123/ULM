@@ -124,9 +124,6 @@ function selectState(val) {
 // Include config file
 require_once "config.php";
 require_once "navbar.php";
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-error_reporting(E_ALL);
-ini_set('display_errors',1);
 // Define variables and initialize with empty values
 $cou_name = $doa = $dob = $address = $mobile_no = $mail_id = "";
 $cou_name_err = $address_err = $mobile_no_err = "";

@@ -55,15 +55,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
 
+    if ($_FILES["photo"]) {
+        $photo = $_FILES["photo"];
+        if ($photo["error"] == 4) {
+            
+            $photo = "default.jpg"; // Set default filename
+            
+        } else {
+            $photo_name = $photo['name'];
+            $photo_ext = pathinfo($photo_name, PATHINFO_EXTENSION);
+            $new_photo_name = $username . '.' . $photo_ext;
+            $photo_path = "/ulm/photo/" . $new_photo_name;
+            move_uploaded_file($photo["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . $photo_path);
+            $photo = $new_photo_name; // Set $photo to the new filename
+        }
+    }
+
     
     // Check input errors before inserting in database
     if(empty($cou_name_errf) && empty($username_err) && empty( $password_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, role, fname, lname) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (username, password, role, fname, lname, photo) VALUES (?, ?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters 
-            mysqli_stmt_bind_param($stmt, "ssiss",$username, $hashed_password,$role,$cou_namef, $cou_names);
+            mysqli_stmt_bind_param($stmt, "ssisss",$username, $hashed_password,$role,$cou_namef, $cou_names , $photo);
             
             // Set parameters
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -74,10 +90,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
                 // header("Location: seals.php?mob=$mobile_no");
-                echo '<script type="text/javascript">
-				location.replace("userad.php");
-			  </script>';
-                exit();
+            //     echo '<script type="text/javascript">
+			// 	location.replace("userad.php");
+			//   </script>';
+                // exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -100,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <div class="card shadow-lg bg-info text-white border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light text-info my-4">Add New User</h3></div>
                                     <div class="card-body">
-                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data" >
                                            <div class="form-group">
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -165,6 +181,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
                                                         <label for="inputPasswordConfirm">Confirm Password</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/jpeg">
+                                                    <label for="photo">Upload Photo</label>
                                                     </div>
                                                 </div>
                                             </div>

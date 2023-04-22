@@ -18,7 +18,7 @@ if($pageName !== 'ajax.php' && $pageName !== 'activity.php'  && $pageName !== 'f
       exit;
   }
   if(isset($_SESSION["role"]) && $_SESSION["role"] == 1) {
-      include('navadmin.php');
+      include('navadmn.php');
   } elseif (isset($_SESSION["role"]) && $_SESSION["role"] == 2) {
       include('navdatae.php');
   } else {

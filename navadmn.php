@@ -320,6 +320,7 @@ function format ( d ) {
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user  fa-fw  text-white"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="activity.php">Activity Log</a></li>
+                <li><a class="dropdown-item" href="changesetting.php">Change User Details </Details></a></li>
                 <li><a class="dropdown-item" href="changepass.php">Change Password</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="logout.php">Logout</a></li>
@@ -338,8 +339,12 @@ function format ( d ) {
                     <div class="sb-sidenav-menu">
                         <div class="nav">
 
-                        <div class="sb-sidenav-menu-heading  text-white"><?php  echo "Loged in as  ". $_SESSION["username"]?></div>
-                           
+                        <div class="sb-sidenav-menu-heading text-white">
+                            <div class="d-flex align-items-center">
+                              <img src="photo/<?php echo $_SESSION["pic"] ?>" class="rounded-circle mr-2" width="60" height="60" alt="User Avatar">
+                              <span style="font-size: 16px;"><?php echo "Logged in as " . $_SESSION["username"] ?></span>
+                            </div>
+                          </div>
                         <div class="sb-sidenav-menu-heading  text-white">For Manegment</div>
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>

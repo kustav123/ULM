@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT store, role, id, username, password FROM users WHERE username = ? and status = 1";
+        $sql = "SELECT photo,store, role, id, username, password FROM users WHERE username = ? and status = 1";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $store ,$role,$id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt,$photo, $store ,$role,$id, $username, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)&& $role == 1){
                             // Password is correct, so start a new session
@@ -85,6 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;   
                             $_SESSION["role"] = $role;
                             $_SESSION["store"] = $store;   
+                            $_SESSION["pic"] = $photo;  
    
                             mysqli_query($link, "UPDATE users SET onstatus = '1' WHERE id = {$_SESSION['id']}");
                             logActivity('Login', 'Logedin', 'User ' .  $_SESSION["username"] . ' Logedin from ' . $_SERVER["REMOTE_ADDR"] , $_SESSION["id"] );
@@ -100,6 +101,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;   
                             $_SESSION["role"] = $role;  
                             $_SESSION["store"] = $store;  
+                            $_SESSION["pic"] = $photo;  
+
                             mysqli_query($link, "UPDATE users SET onstatus = '1' WHERE id = {$_SESSION['id']}");                   
                             logActivity('Login', 'Logedin', 'User ' .  $_SESSION["username"] . ' Logedin from ' . $_SERVER["REMOTE_ADDR"] , $_SESSION["id"] );
 
@@ -115,6 +118,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;   
                             $_SESSION["role"] = $role;   
                             $_SESSION["store"] = $store;
+                            $_SESSION["pic"] = $photo;  
+
                             mysqli_query($link, "UPDATE users SET onstatus = '1' WHERE id = {$_SESSION['id']}");                     
                             logActivity('Login', 'Logedin', 'User ' .  $_SESSION["username"] . ' Logedin from ' . $_SERVER["REMOTE_ADDR"] , $_SESSION["id"] );
 

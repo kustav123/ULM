@@ -7,3 +7,9 @@ update act set store = 'HYD'
 
 ALTER TABLE `users` ADD `store` VARCHAR(4) NULL AFTER `onstatus`;
 update users set store = 'HYD' ;
+
+
+
+
+-- add photo
+ALTER TABLE `users` ADD `photo` VARCHAR(20) NULL AFTER `store`;
