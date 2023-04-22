@@ -40,6 +40,11 @@ div.dataTables_length {
     background-color: #ff7675;
     border-color: #ff7675;
   }
+  body {
+    background-color: #eee
+}
+
+
 </style>
 
     <meta charset="utf-8" />
@@ -52,18 +57,21 @@ div.dataTables_length {
     <!-- <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script type="module" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+<script  src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+  <!--  <script type="module" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
 
 
-<!-- <script  type="module" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
-<!-- <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet"> -->
+   <!-- <script type="module" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script> -->
+   <!-- <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet"> -->
 
 
 
 
 </head>
+
 <body>
-        <!-- Modal chat-->
+    <!-- Modal chat-->
 
 <div class="modal fade" id="chat-modal" tabindex="-1" role="dialog" aria-labelledby="chat-modal-label" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -88,6 +96,32 @@ div.dataTables_length {
     </div>
   </div>
 </div>
+<!-- Modal failed login-->
+
+<div class="modal fade" id="inboxModal" tabindex="-1" aria-labelledby="inboxModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inboxModalLabel">Inbox Messages</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+  <table id="notificationTable" class="table" >
+    <thead>
+      <tr>
+        <th scope="col">Sender</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Date</th>
+        <th scope="col"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
 <script>
 $(document).ready(function() {
   // Load chat history when the modal is opened
@@ -119,8 +153,8 @@ $(document).ready(function() {
     error: function(xhr, status, error) {
       console.log(error);
 
-      // Long-poll again after receiving the response
-      setTimeout(longPoll, 1000); // wait 1 second before next request
+     // Long-poll again after receiving the response
+     setTimeout(longPoll, 2000); // wait 1 second before next request
     }
   });
 }
@@ -161,30 +195,7 @@ $('#chat-modal').on('shown.bs.modal', function() {
 });
 
 </script>
-        <!-- Modal failed login-->
-<div class="modal fade" id="inboxModal" tabindex="-1" aria-labelledby="inboxModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="inboxModalLabel">Inbox Messages</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
 
-      <div class="modal-body">
-  <table id="notificationTable" class="table" >
-    <thead>
-      <tr>
-        <th scope="col">Sender</th>
-        <th scope="col">Subject</th>
-        <th scope="col">Date</th>
-        <th scope="col"></th>
-
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-</div>
 
 <script>
 $(document).ready(function() {
@@ -293,18 +304,20 @@ function format ( d ) {
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark text-white">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="fm_index.php">Vasundhara</a>
+    <a class="navbar-brand ps-3" href="index.php">Vasundhara</a>
     
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-lg-0">
-        <li class="nav-item">
+    <li class="nav-item">
             <div class="input-group">
-            <button class="btn btn-link" type="button" id="groupChatModalBtn" data-bs-toggle="modal" data-bs-target="#chat-modal"><i class="fas fa-comments"></i></button>
-            <button class="btn btn-link" type="button" id="inboxModalBtn" data-bs-toggle="modal" data-bs-target="#inboxModal"><i class="fas fa-bell"></i></button>
+              
+            <button class="btn btn-link" type="button" id="groupChatModalBtn" data-bs-toggle="modal" data-bs-target="#chat-modal"><i class="fas fa-comments"></i></button></li>
+
+            <li class="nav-item"><button class="btn btn-link" type="button" id="inboxModalBtn" data-bs-toggle="modal" data-bs-target="#inboxModal"><i class="fas fa-bell"></i></button></li>
             </div>
-        </li>
+        
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw  text-white"></i></a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user  fa-fw  text-white"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="activity.php">Activity Log</a></li>
                 <li><a class="dropdown-item" href="changepass.php">Change Password</a></li>
@@ -318,59 +331,112 @@ function format ( d ) {
         </li>
     </ul>
 </nav>
+
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+
                         <div class="sb-sidenav-menu-heading  text-white"><?php  echo "Loged in as  ". $_SESSION["username"]?></div>
-                            <div class="sb-sidenav-menu-heading text-white">For FM</div>
-                            <!-- <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a> -->
-                            
-                            <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Data Entry
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Coustomer
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="addcus.php">Add Coustomer</a>
-                                           
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Sales
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="in.php">Sales Start</a>
-                                            <a class="nav-link" href="out.php">Sales End</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div> -->
-                            <a class="nav-link" href="fm_index.php">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-address-card"></i></div>
+                           
+                        <div class="sb-sidenav-menu-heading  text-white">For Manegment</div>
+                            <a class="nav-link" href="index.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>
                                 Dashboard
                             </a>
                             
+                            <?php
+                              if ($_SESSION["role"] == 2) {
+                              ?>
+                              <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                  <div class="sb-nav-link-icon"><i class="fas fa-book-open  text-white"></i></div>
+                                  Data Entry
+                                  <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                              </a>
+                              <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                  <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                      <a class="nav-link" href="addcus.php">
+                                          Add Coustomer
+                                          <!-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
+                                      </a>
+                                      <!-- <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                          <nav class="sb-sidenav-menu-nested nav">
+                                              <a class="nav-link" href="addcus.php">Add Coustomer</a>
+                                          </nav>
+                                      </div> -->
+                                      <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                          Sales
+                                          <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                      </a>
+                                      <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                          <nav class="sb-sidenav-menu-nested nav">
+                                              <a class="nav-link" href="in.php">Sales Start</a>
+                                              <a class="nav-link" href="out.php">Sales End</a>
+                                          </nav>
+                                      </div>
+                                  </nav>
+                              </div>
+                              <?php
+                              }
+                              ?>
+                              <?php
+                              if ($_SESSION["role"] == 2  || $_SESSION["role"] == 3){
+                              ?>
                             <a class="nav-link" href="fup.php">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>
                                 Follow Up
                             </a>
+                            <?php
+                              }
+                              ?>
+
+                              <?php
+                              if ($_SESSION["role"] == 1  || $_SESSION["role"] == 4){
+                              ?>  
+
+                            <div class="sb-sidenav-menu-heading  text-white">Search</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns  text-white"></i></div>
+                                Report
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.php">Seals Report</a>
+                                    <a class="nav-link" href="cad.php">Customer Database</a>
+                            </div>
+                            <?php
+                              }
+                              ?>
+                              <?php
+                              if ($_SESSION["role"] == 1  || $_SESSION["role"] == 4){
+                              ?> 
+                                    <div class="sb-sidenav-menu-heading  text-white">Admin</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayout" aria-expanded="false" aria-controls="collapseLayout">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns  text-white"></i></div>
+                                Manegment
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayout" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="userad.php">User Manegment</a>
+                                    <a class="nav-link" href="exucread.php">Executive Manegment</a>
+                                    <a class="nav-link" href="assoread.php">Associate Manegment</a>
+                                    <a class="nav-link" href="prodread.php">Product Manegment</a>
+                                </nav>
+                                
+                            </div>
+                            <?php
+                              }
+                              ?>
+                            <a class="nav-link" href="mess.php">Send Notification</a>
                             
                     </div>
-                    <a class="nav-link" href="mess.php">Send Notification</a>
+                    
 
                 </nav>
+
             </div>
+            
+</body>
