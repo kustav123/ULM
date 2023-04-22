@@ -124,14 +124,14 @@ require_once "navbar.php";
                                     Customer visit
                                     <form>
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                         <select id="daylimit" name="daylimit" class="form-control">
                                             <option value="7">Last 7 days</option>
                                             <option value="15">Last 15 days</option>
                                             <option value="30">Last 30 days</option>
                                         </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                         <select id="store" name="store" class="form-control">
                                             <option value="1">Hyderabad</option>
                                             <option value="2">Vijayawada</option>
