@@ -243,36 +243,29 @@ if (isset($_POST["to"]) && isset($_POST["from"])) {
         $from = $input_from;
     }
     
-    // $input_store = trim($_POST["store"]);
-    // if(empty($input_store)){
-    //     $store_err = "Please select store name.";
-    
-    // } else{
-    //     $store = $input_store;
-    // }
-    
     // Check input errors before inserting in database
     if(empty($to_err) && empty($from_err) ){
       $store = $_POST["store"];
+      $c = count($store) ;
         // Prepare an insert statement
-        // $param_store = implode(", ", $_POST["store"]);
+    //  $param_store = implode(", ", $_POST["store"]);
+    $param_store = '';
+     
+     for ($i=0; $i < $c ; $i++) { 
+        $param_store .= "'{$store[$i]}'";
+        if($i != $c -1) {
+            $param_store .= ",";
+        } 
+     }
         
-        //$sql = "SELECT a.* , b.mobile_no, b.cou_name , p.name as pname ,x.name as associaten, y.name as executiven, z.username as crm FROM act a , coustomeradd b, associate x ,executive y, product p ,users z where a.date between ? and ? and  b.id = a.castid and x.id = a.associate and y.id = a.executive and z.id = a.user and a.product = p.id and a.store in (".str_repeat('?,', count($store)-1) . '?) ;";
-        $sql = "SELECT a.*, b.mobile_no, b.cou_name, p.name AS pname, x.name AS associaten, y.name AS executiven, z.username AS crm 
-        FROM act a, coustomeradd b, associate x, executive y, product p, users z 
-        WHERE a.date BETWEEN ? AND ? 
-            AND b.id = a.castid 
-            AND x.id = a.associate 
-            AND y.id = a.executive 
-            AND z.id = a.user 
-            AND a.product = p.id 
-            AND a.store IN (".str_repeat('?,', count($store)-1) . '?)';
+        $sql = "SELECT a.* , b.mobile_no, b.cou_name , p.name as pname ,x.name as associaten, y.name as executiven, z.username as crm FROM act a , coustomeradd b, associate x ,executive y, product p ,users z where a.date between ? and ? and  b.id = a.castid and x.id = a.associate and y.id = a.executive and z.id = a.user and a.product = p.id and a.store in ($param_store) ;";
+        
       
 
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_from, $param_to);
+            mysqli_stmt_bind_param($stmt, "ss", $param_from, $param_to);
             
             // Set parameters
             $param_from = $from;
@@ -315,7 +308,8 @@ if (isset($_POST["to"]) && isset($_POST["from"])) {
                           echo "<th>Remarks</th>";
                           echo "<th>In Time</th>";
                           echo "<th>Out Time</th>";
-                          echo "<th>CRM</th>";
+                          echo "<th>CRE</th>";
+                          echo "<th>Store</th>";
                          
                           
                       echo "</tr>";
@@ -347,6 +341,7 @@ if (isset($_POST["to"]) && isset($_POST["from"])) {
                           echo "<td>" . $row['intime'] . "</td>";
                           echo "<td>" . $row['time'] . "</td>";
                           echo "<td>" . $row['crm'] . "</td>";
+                          echo "<td>" . $row['store'] . "</td>";
                       echo "</tr>";
                   }
                   echo "</tbody>";                            
