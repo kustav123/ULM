@@ -192,11 +192,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($cou_name_err) && empty($address_err) && empty($mobile_no_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO coustomeradd (cou_name, address, state, country, ccode, mobile_no, mail_id, dob, doa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO coustomeradd (cou_name, address, state, country, ccode, mobile_no, mail_id, dob, doa, store) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters 
-            mysqli_stmt_bind_param($stmt, "sssssssss", $param_cou_name, $param_address, $state, $country, $code, $param_mobile_no, $param_mail_id, $param_dob, $param_doa);
+            mysqli_stmt_bind_param($stmt, "ssssssssss", $param_cou_name, $param_address, $state, $country, $code, $param_mobile_no, $param_mail_id, $param_dob, $param_doa, $_SESSION["store"]);
             
             // Set parameters
             $param_cou_name = $cou_name;

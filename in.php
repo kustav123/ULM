@@ -62,10 +62,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($cou_mob_err) && empty($cou_time_err) && empty($name_err)){
         
-        $sql = "INSERT INTO `castin` ( `mob`, `name`, `tgi`, `thc`, `type`, `time`, `cou_id`) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
+        $sql = "INSERT INTO `castin` ( `mob`, `name`, `tgi`, `thc`, `type`, `time`, `cou_id`, `store`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" ;
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssss", $inputmob  , $name, $tgi, $thc, $type, $time, $cou_id);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $inputmob  , $name, $tgi, $thc, $type, $time, $cou_id ,$_SESSION["store"]);
             // mysqli_stmt_bind_param($stmt, "ssssss",$fm, $advance, $orderst, $walkout, $reason, $conversion, );
 
             // Attempt to execute the prepared statement

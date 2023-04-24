@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($cou_name_err) ){
         
-        $sql = "INSERT INTO `act` ( `castid`, `date`, `tgi`, `tht`, `source`, `executive`, `associate`, `Type`, `product`, `billed`, `sr`, `requirement`, `fm`, `advance`, `orderst`, `walkout`, `reason`, `conversion`, `remarks`, `intime`, `time`, `user`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )" ;
+        $sql = "INSERT INTO `act` ( `castid`, `date`, `tgi`, `tht`, `source`, `executive`, `associate`, `Type`, `product`, `billed`, `sr`, `requirement`, `fm`, `advance`, `orderst`, `walkout`, `reason`, `conversion`, `remarks`, `intime`, `time`, `user`, `store`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )" ;
          
         //  $sql = "INSERT INTO `test` (`castid`, `date`, `tgi`, `tht`, `s`, `ex`) VALUES (?, ?, ?, ?, ?, ?)" ;
         if($stmt = mysqli_prepare($link, $sql)){
@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             date_default_timezone_set('Asia/Kolkata');
  
             $date = date('Y-m-d');
-            mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssss", $cou_id, $date, $tgi, $thc, $source, $executive, $associate, $type, $product, $billed, $sr, $requirement, $fm, $advance, $orderst, $walkout, $reason, $conversion, $remark, $intime ,$time, $userid);
+            mysqli_stmt_bind_param($stmt, "sssssssssssssssssssssss", $cou_id, $date, $tgi, $thc, $source, $executive, $associate, $type, $product, $billed, $sr, $requirement, $fm, $advance, $orderst, $walkout, $reason, $conversion, $remark, $intime ,$time, $userid, $_SESSION["store"]);
              
             if(mysqli_stmt_execute($stmt)){
                // Records created successfully. Redirect to landing page
@@ -98,7 +98,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $cnamei = $_POST["cname"];
                 $updatedby = $_SESSION["username"];
                 // Insert comment and follow-up date into follow-up table
-                $sql = "INSERT INTO followup (castid, cast_mob	,castname, remarks , 	updated_by ,date , createdby) VALUES ( '$cid', '$cmob' , '$cnamei', '$comment','$updatedby' , '$followup_date', '$username')";
+                $store = $_SESSION["store"] ;
+                $sql = "INSERT INTO followup (castid, cast_mob	,castname, remarks , 	updated_by ,date , createdby, store) VALUES ( '$cid', '$cmob' , '$cnamei', '$comment','$updatedby' , '$followup_date', '$username', '$store')";
                 if (mysqli_query($link, $sql)) {
                     logActivity('Add', 'Followup', 'Customer Followup ' . $cmob .' by '.  $_SESSION["username"] , $_SESSION["id"] );    
                 } else {

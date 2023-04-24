@@ -35,11 +35,12 @@ require_once "navbar.php";
                             
                             <div class="card-body ">
 <?php
+
 // Check existence of id parameter before processing further
 if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     // Include config file
     require_once "config.php";
-    
+   
     // Prepare a select statement
     $sql = "SELECT a.* ,x.name as associaten, y.name as executiven, p.name as productname,z.username as crm FROM act a ,  associate x ,executive y, product p,users z where a.castid = ? and x.id = a.associate and y.id = a.executive and z.id = a.user and a.product = p.id";
     
@@ -88,7 +89,8 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                         echo "<th>Remarks</th>";
                                         echo "<th>In Time</th>";
                                         echo "<th>Out Time</th>";
-                                        echo "<th>CRM</th>";
+                                        echo "<th>C.R.E</th>";
+                                        echo "<th>Store</th>";
 
                                        
                                         
@@ -121,6 +123,7 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                                         echo "<td>" . $row['intime'] . "</td>";
                                         echo "<td>" . $row['time'] . "</td>";
                                         echo "<td>" . $row['crm'] . "</td>";
+                                        echo "<td>" . $row['store'] . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
@@ -209,7 +212,10 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
     mysqli_close($link);
   }
 
-
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  error_reporting(E_ALL);
+  mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 // for date 
 if (isset($_POST["to"]) && isset($_POST["from"])) {
   require_once "config.php";
@@ -237,19 +243,36 @@ if (isset($_POST["to"]) && isset($_POST["from"])) {
         $from = $input_from;
     }
     
+    // $input_store = trim($_POST["store"]);
+    // if(empty($input_store)){
+    //     $store_err = "Please select store name.";
     
+    // } else{
+    //     $store = $input_store;
+    // }
     
     // Check input errors before inserting in database
     if(empty($to_err) && empty($from_err) ){
-      
+      $store = $_POST["store"];
         // Prepare an insert statement
-        $sql = "SELECT a.* , b.mobile_no, b.cou_name , p.name as pname ,x.name as associaten, y.name as executiven, z.username as crm FROM act a , coustomeradd b, associate x ,executive y, product p ,users z where a.date between ? and ? and  b.id = a.castid and x.id = a.associate and y.id = a.executive and z.id = a.user and a.product = p.id ;";
+        // $param_store = implode(", ", $_POST["store"]);
+        
+        //$sql = "SELECT a.* , b.mobile_no, b.cou_name , p.name as pname ,x.name as associaten, y.name as executiven, z.username as crm FROM act a , coustomeradd b, associate x ,executive y, product p ,users z where a.date between ? and ? and  b.id = a.castid and x.id = a.associate and y.id = a.executive and z.id = a.user and a.product = p.id and a.store in (".str_repeat('?,', count($store)-1) . '?) ;";
+        $sql = "SELECT a.*, b.mobile_no, b.cou_name, p.name AS pname, x.name AS associaten, y.name AS executiven, z.username AS crm 
+        FROM act a, coustomeradd b, associate x, executive y, product p, users z 
+        WHERE a.date BETWEEN ? AND ? 
+            AND b.id = a.castid 
+            AND x.id = a.associate 
+            AND y.id = a.executive 
+            AND z.id = a.user 
+            AND a.product = p.id 
+            AND a.store IN (".str_repeat('?,', count($store)-1) . '?)';
       
 
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_from, $param_to);
+            mysqli_stmt_bind_param($stmt, "sss", $param_from, $param_to);
             
             // Set parameters
             $param_from = $from;

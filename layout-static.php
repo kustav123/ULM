@@ -48,26 +48,66 @@
                                         <div class="accordion-body">
 
 
-                                            <div class="card shadow-lg text-white bg-info border-0 rounded-lg mt-3">
+                                            <div class="card shadow-lg bg-info text-white border-0 rounded-lg">
                                                 <div class="card-header">
-                                                    <h3 class="text-center font-weight-light text-info my-4">View Sales
+                                                    <h3 class="text-center font-weight-light">View Sales
                                                         Report</h3>
                                                 </div>
                                                 <div class="card-body">
                                                     <form action=./read.php method="post">
 
                                                         <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label>From</label>
-                                                                <input type="date" name="from" class="form-control">
-                                                            </div>
-                                                            <label>To</label>
-                                                            <input type="date" name="to" class="form-control">
-                                                        </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
 
-                                                        </br><input type="submit" class="btn btn-primary"
-                                                            value="Submit">
-                                                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                                                        <input type="date" id="from" name="from"
+                                                                            placeholder="From" input
+                                                                            class="form-control">
+                                                                        <label>From</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <input type="date" id="to" name="to"
+                                                                            placeholder="To" input class="form-control">
+                                                                        <label>To</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                <div class="form-floating mb-3 mb-md-0"><strong class="sl">Select Store:</strong>
+                                                                    <button class="btn btn-secondary" type="button">
+                                                                        <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="multiple-checkboxes" multiple="multiple" name="store[]" class="form-control">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+ 
+                                                 ?>
+                                                 
+                                                 </button>
+                                                 </div>
+                                                       </div>
+                                                            </div>
+
+                                                            </br><input type="submit" class="btn btn-primary"
+                                                                value="Submit">
+                                                            <a href="layout-static.php"
+                                                                class="btn btn-secondary ml-2">Cancel</a>
+                                                        </div>
 
                                                     </form>
                                                 </div>
@@ -80,6 +120,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingTwo">
                                         <button class="accordion-button collapsed" type="button"
@@ -92,9 +133,9 @@
                                         aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
 
-                                            <div class="card shadow-lg text-white bg-info border-0 rounded-lg mt-3">
+                                            <div class="card shadow-lg bg-info text-white border-0 rounded-lg">
                                                 <div class="card-header">
-                                                    <h3 class="text-center font-weight-light text-info my-4">View
+                                                    <h3 class="text-center font-weight-light">View
                                                         Sammary
                                                         Report</h3>
                                                 </div>
@@ -102,17 +143,54 @@
                                                     <form action=./read.php method="post">
 
                                                         <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label>From</label>
-                                                                <input type="date" name="froms" class="form-control">
-                                                            </div>
-                                                            <label>To</label>
-                                                            <input type="date" name="tos" class="form-control">
-                                                        </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
 
-                                                        </br><input type="submit" class="btn btn-primary"
-                                                            value="Submit">
-                                                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                                                        <input type="date" id="froms" name="froms"
+                                                                            placeholder="From" input
+                                                                            class="form-control">
+                                                                        <label>From</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <input type="date" id="tos" name="tos"
+                                                                            placeholder="To" input class="form-control">
+                                                                        <label>To</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="store" name="store" class="form-control">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+ 
+                                                 ?>
+                                                                        <label for="store">Store</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            </br><input type="submit" class="btn btn-primary"
+                                                                value="Submit">
+                                                            <a href="layout-static.php"
+                                                                class="btn btn-secondary ml-2">Cancel</a>
+                                                        </div>
 
                                                     </form>
                                                 </div>
@@ -124,6 +202,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingTwo">
                                         <button class="accordion-button collapsed" type="button"
@@ -138,19 +217,41 @@
 
 
 
-                                            <div class="card shadow-lg text-white bg-info border-0 rounded-lg mt-2">
+                                            <div class="card shadow-lg bg-info text-white border-0 rounded-lg">
                                                 <div class="card-header">
-                                                    <h3 class="text-center font-weight-light text-info my-4">Sales
+                                                    <h3 class="text-center font-weight-light">Sales
                                                         Person
                                                         Report</h3>
                                                 </div>
                                                 <div class="card-body">
                                                     <form action=./read.php method="post">
 
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label>Sales executive</label>
-                                                                <?php
+                                                        <div class="form-group">
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+
+                                                                        <input type="date" id="froma" name="froma"
+                                                                            placeholder="From" input
+                                                                            class="form-control">
+                                                                        <label>Date From</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <input type="date" id="toa" name="toa"
+                                                                            placeholder="To" input class="form-control">
+                                                                        <label>Date To</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+
+                                                                        <?php
                                                                 // Include config file
                                                                 require_once "config.php";
                                                                 error_reporting(E_ALL);
@@ -160,7 +261,7 @@
                                                                 $resulte = $link->query($sqle);
 
                                                                 // Create dropdown
-                                                                echo '<select name="executive" class="form-control" id="executive" placeholder="executive">';
+                                                                echo '<select name="executive" input class="form-control" id="executive" placeholder="executive">';
                                                                 while ($row = $resulte->fetch_assoc()) {
                                                                     echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
                                                                 }
@@ -168,22 +269,36 @@
 
 
                                                                 ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label>Date From</label>
-                                                                <input type="date" name="froma" class="form-control">
-                                                            </div>
-                                                            <div class="col">
-                                                                <label>Date To</label>
-                                                                <input type="date" name="toa" class="form-control">
+                                                                        <label>Sales executive</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="store" name="store" input class="form-control">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+ 
+                                                 ?>
+                                                                        <label>Store</label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
 
-                                                        </div>
-                                                        </br><input type="submit" class="btn btn-primary"
-                                                            value="Submit">
-                                                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                                                            </br><input type="submit" class="btn btn-primary"
+                                                                value="Submit">
+                                                            <a href="index.php"
+                                                                class="btn btn-secondary ml-2">Cancel</a>
 
                                                     </form>
                                                 </div>
@@ -209,9 +324,9 @@
                                         aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
 
-                                            <div class="card shadow-lg text-white bg-info border-0 rounded-lg mt-2">
+                                            <div class="card shadow-lg bg-info text-white border-0 rounded-lg">
                                                 <div class="card-header">
-                                                    <h3 class="text-center font-weight-light text-info my-4">Follow up
+                                                    <h3 class="text-center font-weight-light">Follow up
                                                         Report</h3>
                                                 </div>
                                                 <div class="card-body">
@@ -249,11 +364,12 @@
 
                                         </div>
                                     </div>
-                                    <div class="accordion-item">
+                                </div>
+                                <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingFour">
                                         <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#follow-five" aria-expanded="false"
-                                            aria-controls="flush-collapseFour">
+                                            data-bs-toggle="collapse" data-bs-target="#follow-five"
+                                            aria-expanded="false" aria-controls="flush-collapseFour">
                                             View Cumulative report
                                         </button>
                                     </h2>
@@ -261,9 +377,10 @@
                                         aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
 
-                                            <div class="card shadow-lg text-white bg-info border-0 rounded-lg mt-3">
+                                            <div class="card shadow-lg bg-info text-white border-0 rounded-lg">
                                                 <div class="card-header">
-                                                    <h3 class="text-center font-weight-light text-info my-4">View Cumulative report</h3>
+                                                    <h3 class="text-center font-weight-light">View
+                                                        Cumulative report</h3>
                                                 </div>
                                                 <div class="card-body">
                                                     <form action=./read.php method="post">
@@ -291,13 +408,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                             </div>
-
                         </div>
-
-
-
                     </div>
                 </div>
             </main>
@@ -321,9 +433,16 @@
             </footer>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
     <script src="js/scripts.js"></script>
+
+    <script src="js1/jquery.min.js"></script>
+    <script src="js1/popper.js"></script>
+    <script src="js1/bootstrap.min.js"></script>
+    <script src="js1/bootstrap-multiselect.js"></script>
+    <script src="js1/main.js"></script>
+
 </body>
 
 </html>

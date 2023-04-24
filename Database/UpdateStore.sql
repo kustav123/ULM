@@ -13,3 +13,16 @@ update users set store = 'HYD' ;
 
 -- add photo
 ALTER TABLE `users` ADD `photo` VARCHAR(20) NULL AFTER `store`;
+
+ALTER TABLE `castin` ADD `store` VARCHAR(5) NULL;
+
+ALTER TABLE `associate` ADD `store` VARCHAR(5) NULL;
+ALTER TABLE `chat` ADD `store` VARCHAR(5) NULL;
+ALTER TABLE `coustomeradd` ADD `store` VARCHAR(5) NULL;
+
+ALTER TABLE `executive` ADD `store` VARCHAR(5) NULL;
+ALTER TABLE `followup` ADD `store` VARCHAR(5) NULL;
+ALTER TABLE `messages` ADD `store` VARCHAR(5) NULL;
+ALTER TABLE `notification` ADD `store` VARCHAR(5) NULL;
+
+ALTER TABLE `product` ADD `store` VARCHAR(5) NULL;

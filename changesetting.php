@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       
     if(empty($fname_err) && empty($lname_err) ){
         
-
+     
       $sql = "update users set fname = ?, lname = ?, photo = ? WHERE id = ?";
       $stmt = mysqli_prepare($link, $sql) ;
       mysqli_stmt_bind_param($stmt, "sssi", $pram_fname , $pram_lname , $param_photo , $param_id);
@@ -80,10 +80,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             mysqli_stmt_execute($stmt);
                             logActivity('Update', 'UserDetail', 'Update UserDetail for ' . $_SESSION["username"] .' by '.  $_SESSION["username"] , $_SESSION["id"] );
-
-                            // echo '<script type="text/javascript">
-                            //         location.replace("changesetting.php");
-                            //     </script>';
+                            
+                            echo '<script type="text/javascript">
+                                    location.replace("changesetting.php");
+                                </script>';
                 exit();
                         } else {
                             $oldpass_errf = "Old password is wrong.";
