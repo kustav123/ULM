@@ -131,7 +131,12 @@ $cou_name_err = $address_err = $mobile_no_err = "";
 if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
   
   $mobile_no = trim($_GET["mob"]) ;
-  $type = trim($_GET["type"]) ;
+  if (isset ($_GET["type"])){
+    $type = trim($_GET["type"]) ;
+  } else {
+    $type = '' ;
+  }
+ 
 }
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -215,7 +220,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if( $type == "new" )  {
                     echo("<script>location.href = '/ulm/in.php?mob=$mobile_no';</script>");
                     // echo $type ;
-                }  else {            
+                }  elseif ( $type == "ex") {            
                 echo("<script>location.href = '/ulm/exci.php?mob=$mobile_no';</script>");
                 // echo $type ;
                 }
