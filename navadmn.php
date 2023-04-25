@@ -391,7 +391,7 @@ function format ( d ) {
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.php">Seals Report</a>
+                                    <a class="nav-link" href="layout-static.php">Sales Report</a>
                                     <a class="nav-link" href="cad.php">Customer Database</a>
                             </div>
                                     <div class="sb-sidenav-menu-heading  text-white">Admin</div>

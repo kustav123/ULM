@@ -10,6 +10,12 @@
     <title>Sales Report</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- for multi dropdown -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/multidrop.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -163,9 +169,10 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-floating mb-3 mb-md-0">
-                                                                        <?php
+                                                            <div class="col-md-6">
+                                                                <strong class="sl">Select Store:</strong>
+                                                                <button class="btn btn-info" type="button">
+                                                                <?php
                                                  // Include config file
                                                  require_once "config.php";
                                                  error_reporting(E_ALL);
@@ -174,16 +181,16 @@
                                                  $sqln = "SELECT  strid, strname FROM store";
                                                  $resultn = $link->query($sqln);
                                                  // Create dropdown
-                                                 echo '<select id="store" name="store" class="form-control">';
+                                                 echo '<select id="selectpicker" name="store[]" class="selectpicker" multiple data-live-search="true">';
                                                  while($row = $resultn ->fetch_assoc()) {
                                                      echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
                                                  }
                                                  echo '</select>';
  
                                                  ?>
-                                                                        <label for="store">Store</label>
-                                                                    </div>
-                                                                </div>
+
+                                                </button>
+                                                </div>
                                                             </div>
 
                                                             </br><input type="submit" class="btn btn-primary"
@@ -272,9 +279,9 @@
                                                                         <label>Sales executive</label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-6"> <label>Store</label>
                                                                     <div class="form-floating mb-3 mb-md-0">
-                                                                        <?php
+                                                                    <?php
                                                  // Include config file
                                                  require_once "config.php";
                                                  error_reporting(E_ALL);
@@ -283,14 +290,14 @@
                                                  $sqln = "SELECT  strid, strname FROM store";
                                                  $resultn = $link->query($sqln);
                                                  // Create dropdown
-                                                 echo '<select id="store" name="store" input class="form-control">';
+                                                 echo '<select id="selectpicker" name="store[]" class="selectpicker" multiple data-live-search="true">';
                                                  while($row = $resultn ->fetch_assoc()) {
                                                      echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
                                                  }
                                                  echo '</select>';
  
                                                  ?>
-                                                                        <label>Store</label>
+                                                                       
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -385,14 +392,51 @@
                                                 <div class="card-body">
                                                     <form action=./read.php method="post">
 
-                                                        <div class="form-group">
-                                                            <div class="form-group">
-                                                                <label>From</label>
-                                                                <input type="date" name="cdate" class="form-control">
+                                                    <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+
+                                                                        <input type="date" id="cdate" name="cdate"
+                                                                            placeholder="From" input
+                                                                            class="form-control">
+                                                                        <label>From</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <input type="date" id="csdate" name="csdate"
+                                                                            placeholder="To" input class="form-control">
+                                                                        <label>To</label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <label>To</label>
-                                                            <input type="date" name="csdate" class="form-control">
-                                                        </div>
+                                                        <div class="row">
+                                                        <div class="col-md-6">
+                                                                <strong class="sl">Select Store:</strong>
+                                                                <button class="btn btn-info" type="button">
+                                                                
+                                                                
+                                                                <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="selectpicker" name="store[]" class="selectpicker" multiple data-live-search="true">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+ 
+                                                 ?>
+                                                   </button>
+                                                </div>
+                                                            </div>
+
 
                                                         </br><input type="submit" class="btn btn-primary"
                                                             value="Submit">
@@ -442,7 +486,7 @@
     <script src="js1/bootstrap.min.js"></script>
     <script src="js1/bootstrap-multiselect.js"></script>
     <script src="js1/main.js"></script>
-
+    
 </body>
 
 </html>

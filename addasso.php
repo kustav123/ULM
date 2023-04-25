@@ -78,18 +78,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="card-body">
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                            <div class="form-group">
-                                            <div class="row mb-3">
+                                            <div class="row">
+                                            <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
                                                     <input type="text" id="inputfirstName" name="inputfirstName"  class="form-control <?php echo (!empty($cou_name_errf)) ? 'is-invalid' : ''; ?>" value="<?php echo $cou_namef; ?>">
                                                     <span class="invalid-feedback"><?php echo $cou_name_errf;?></span>
                                                         <label for="inputfirstName">Associate Name</label>
-                                                    
+                                                    </div>
                                                 </div>
-                                                
+                                                <div class="col-md-6">
+                                                <div class="form-floating mb-3 mb-md-0">
+                                           
+                                                <!-- <input type="text" class="form-control" id="associate" placeholder="Associate" name='associate'> -->
+                                                <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqla = "SELECT  strid, strname FROM store";
+                                                 $resulta = $link->query($sqla);
+                       
+                                                 // Create dropdown
+                                                 echo '<select name="strname" class="form-control" id="strname" placeholder="Store Name">';
+                                                 echo '<option disabled selected value> -- Select Store -- </option>';
+                                                 while($row = $resulta->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+                       
+                                                 
+                                                 ?>  
+                                                 <label for="associate">Store Name</label>     
+                                                </div>
+                                                </div>
                                             </div>
 
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid">  <input type="submit" class="btn btn-primary" value="Add New Associate"></div>
+                                                <input type="submit" class="btn btn-primary" value="Add New Associate">
+                                                <a href="addasso.php" class="btn btn-secondary ml-2">Cancel</a>
 
                                             </div>
 

@@ -10,6 +10,115 @@
     <title>Update Customer</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- for state and country autofill -->
+    <style>
+.frmSearch {
+    border: 1px solid #a8d4b1;
+    background-color: #c6f7d0;
+    margin: 2px 0px;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+#country-list {
+    float: left;
+    list-style: none;
+    margin-top: -3px;
+    margin-left: 3px;
+    padding: 0;
+    width: 170px;
+    color: black;
+    position: absolute;
+    z-index: 1;
+}
+
+#country-list li {
+    padding: 10px;
+    background: #f0f0f0;
+    border-bottom: #bbb9b9 1px solid;
+}
+
+#country-list li:hover {
+    background: #ece3d2;
+    cursor: pointer;
+}
+#state-list {
+    float: left;
+    list-style: none;
+    margin-top: -3px;
+    margin-left: 3px;
+    padding: 0;
+    width: 170px;
+    color: black;
+    position: absolute;
+    z-index: 1;
+}
+
+#state-list li {
+    padding: 10px;
+    background: #f0f0f0;
+    border-bottom: #bbb9b9 1px solid;
+}
+
+#state-list li:hover {
+    background: #ece3d2;
+    cursor: pointer;
+}
+/* #search-box {
+    padding: 10px;
+    border: #a8d4b1 1px solid;
+    border-radius: 4px; 
+} */
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+    $("#country").keyup(function() {
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: 'keyword=' + $(this).val(),
+            beforeSend: function() {
+                $("#country");
+            },
+            success: function(data) {
+                $("#suggesstion-box").show();
+                $("#suggesstion-box").html(data);
+                $("#country");
+            }
+        });
+    });
+});
+function selectCountry(val) {
+    $("#country").val(val);
+    $("#suggesstion-box").hide();
+}
+</script>
+
+<script>
+$(document).ready(function() {
+    $("#state").keyup(function() {
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: 'keystate=' + $(this).val(),
+            beforeSend: function() {
+                $("#state");
+            },
+            success: function(data) {
+                $("#suggesstion-bo").show();
+                $("#suggesstion-bo").html(data);
+                $("#state");
+            }
+        });
+    });
+});
+function selectState(val) {
+    $("#state").val(val);
+    $("#suggesstion-bo").hide();
+}
+</script>
 </head>
 
 

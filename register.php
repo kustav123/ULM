@@ -9,6 +9,7 @@
         <title>Add User</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
     </head>
    
 <?php
@@ -184,15 +185,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row mb-3">
                                             <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/jpeg">
+                                                    <input type="file" class="form-control" id="photo" name="photo" placeholder="Upload Photo" accept="image/jpeg">
                                                     <label for="photo">Upload Photo</label>
-                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                           
+                                                <!-- <input type="text" class="form-control" id="associate" placeholder="Associate" name='associate'> -->
+                                                <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqla = "SELECT  strid, strname FROM store";
+                                                 $resulta = $link->query($sqla);
+                       
+                                                 // Create dropdown
+                                                 echo '<select name="strname" class="form-control" id="strname" placeholder="Store Name">';
+                                                 echo '<option disabled selected value> -- Select Store -- </option>';
+                                                 while($row = $resulta->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+                       
+                                                 
+                                                 ?>  
+                                                 <label for="associate">Store Name</label>     
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid">  <input type="submit" class="btn btn-primary" value="Create Account"></div>
+                                                  <input type="submit" class="btn btn-primary" value="Create Account">
+                                                <a href="register.php" class="btn btn-secondary ml-2">Cancel</a>
 
                                             </div>
                                             </form>
@@ -212,11 +242,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </footer>
