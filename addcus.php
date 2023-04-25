@@ -125,7 +125,7 @@ function selectState(val) {
 require_once "config.php";
 require_once "navbar.php";
 // Define variables and initialize with empty values
-$cou_name = $doa = $dob = $address = $mobile_no = $mail_id = "";
+$cou_name = $doa = $dob = $address = $mobile_no = $mail_id = $type = "";
 $cou_name_err = $address_err = $mobile_no_err = "";
  
 if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
@@ -133,9 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
   $mobile_no = trim($_GET["mob"]) ;
   if (isset ($_GET["type"])){
     $type = trim($_GET["type"]) ;
-  } else {
-    $type = '' ;
-  }
+  } 
  
 }
 // Processing form data when form is submitted
@@ -250,7 +248,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="card-body">
                                         
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                    <input type="hidden" name="type" class="form-control" id="type" value="<?php echo $type ?>">
+                                    <input type="hidden" name="type" class="form-control" id="type" value="<?php echo $type; ?>">
                                            <div class="form-group">
                                             
                                            <div class="row mb-3">
