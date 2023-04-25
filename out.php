@@ -76,15 +76,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($cou_name_err) ){
         
+   
         $sql = "INSERT INTO `act` ( `castid`, `date`, `tgi`, `tht`, `source`, `executive`, `associate`, `Type`, `product`, `billed`, `sr`, `requirement`, `fm`, `advance`, `orderst`, `walkout`, `reason`, `conversion`, `remarks`, `intime`, `time`, `user`, `store`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )" ;
          
         //  $sql = "INSERT INTO `test` (`castid`, `date`, `tgi`, `tht`, `s`, `ex`) VALUES (?, ?, ?, ?, ?, ?)" ;
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             // mysqli_stmt_bind_param($stmt, "ssssssssssssssssssss", $cou_id, 'curdate()', $tgi, $thc, $source, $executive, $associate, $type, $product, $billed, $sr, $requirement, $fm, $advance, $orderst, $walkout, $reason, $conversion, $remark, $time);
-            date_default_timezone_set('Asia/Kolkata');
+           
+            if (isset($_POST["backdate"]) && $_POST["backdate"] == "on") {
+
+                $date = $_POST["date"]
+            } else {
+                date_default_timezone_set('Asia/Kolkata');
  
-            $date = date('Y-m-d');
+                $date = date('Y-m-d');
+            } 
+            
             mysqli_stmt_bind_param($stmt, "sssssssssssssssssssssss", $cou_id, $date, $tgi, $thc, $source, $executive, $associate, $type, $product, $billed, $sr, $requirement, $fm, $advance, $orderst, $walkout, $reason, $conversion, $remark, $intime ,$time, $userid, $_SESSION["store"]);
              
             if(mysqli_stmt_execute($stmt)){
@@ -376,8 +384,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                    <div class="row">
                        
                                                     <div class="col">
-                                                       <label for="reason">Exit Time</label>
+                                                       <label for="Time">Exit Time</label>
                                                        <input type="Time" class="form-control" id="time" placeholder="time" name='time'>
+                                                    </div>
+                                                    <div id ="backdateField" div class="col" style="display: none;">
+                                                       <label for="date">Exit Date</label>
+                                                       <input type="date" class="form-control" id="date" placeholder="date" name='date'>
+                                                    </div>
+                                                    <div class="col" >
+                                                    <label for="backdate">Back date</label></br>
+                                                    <input type="checkbox" id="backdate" name="backedate" onchange="toggleBackdateFields()">
+
                                                     </div>
                                                     <div class="col">
                                                     <label for="followup">Follow up:</label></br>
@@ -385,8 +402,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                                     </div>
 
-                                                    </div></br>
+                                                   
 
+                                                    </div></br>
+                                                   
                                                     <div id="followup-fields" style="display: none;">
                                                     <label for="comment">Comment:</label>
                                                     <input type="text" id="comment" name="comment">
@@ -422,13 +441,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <script>
             function toggleFollowUpFields() {
-            var followupCheckbox = document.getElementById("followup");
-            var followupFields = document.getElementById("followup-fields");
+            var fCheckbox = document.getElementById("followup");
+            var fFields = document.getElementById("followup-fields");
 
-            if (followupCheckbox.checked) {
-                followupFields.style.display = "block";
+            if (fCheckbox.checked) {
+                fFields.style.display = "block";
             } else {
-                followupFields.style.display = "none";
+                fFields.style.display = "none";
+            }
+            }
+        </script>
+
+        <script>
+            function toggleBackdateFields() {
+            var bCheckbox = document.getElementById("backdate");
+            var bFields = document.getElementById("backdateField");
+
+            if (bCheckbox.checked) {
+                bFields.style.display = "block";
+            } else {
+                bFields.style.display = "none";
             }
             }
         </script>
