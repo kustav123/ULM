@@ -16,9 +16,11 @@
 // Include config file
 require_once "config.php";
 require_once "navbar.php";
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+// mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 
 // Define variables and initialize with empty values
 
@@ -86,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            
             if (isset($_POST["backdate"]) && $_POST["backdate"] == "on") {
 
-                $date = $_POST["date"]
+                $date = $_POST["date"] ;
             } else {
                 date_default_timezone_set('Asia/Kolkata');
  
@@ -131,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
          
         // Close statement
-       
+       // mysqli_stmt_close($stmt);
     }
     
     // Close connection
@@ -393,7 +395,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     </div>
                                                     <div class="col" >
                                                     <label for="backdate">Back date</label></br>
-                                                    <input type="checkbox" id="backdate" name="backedate" onchange="toggleBackdateFields()">
+                                                    <input type="checkbox" id="backdate" name="backdate" onchange="toggleBackdateFields()">
 
                                                     </div>
                                                     <div class="col">
