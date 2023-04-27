@@ -54,7 +54,9 @@ require_once "navbar.php";
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-warning text-white mb-4">
                             <div class="card-body">Customer Inside store now</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="card-footer">
+                            <div class="d-flex justify-content-center flex-row">
+                                 <div class="col-md-2 d-flex align-items-center justify-content-between"> HYD
                                 <?php
                                     // Include config file
                                     require_once "config.php";
@@ -62,7 +64,7 @@ require_once "navbar.php";
                                     ini_set('display_errors',1);
 
                                     // Define variables and initialize with empty values 
-                                    $sqle = "SELECT count(*) FROM castin";
+                                    $sqle = "SELECT count(*) FROM castin WHERE store = 'HYD'";
                                     $resulte = $link->query($sqle);
 
                                     $row = $resulte->fetch_array();
@@ -70,13 +72,53 @@ require_once "navbar.php";
 
                                     echo '<div class="big text-white">' . $count . '</i></div>';
                                 ?>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-center justify-content-between"> VIZ
+                                <?php
+                                    // Include config file
+                                    require_once "config.php";
+                                    error_reporting(E_ALL);
+                                    ini_set('display_errors',1);
+
+                                    // Define variables and initialize with empty values 
+                                    $sqle = "SELECT count(*) FROM castin WHERE store = 'VIZ'";
+                                    $resulte = $link->query($sqle);
+
+                                    $row = $resulte->fetch_array();
+                                    $count = $row[0];
+
+                                    echo '<div class="big text-white">' . $count . '</i></div>';
+                                ?>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-center justify-content-between"> BZA
+                                <?php
+                                    // Include config file
+                                    require_once "config.php";
+                                    error_reporting(E_ALL);
+                                    ini_set('display_errors',1);
+
+                                    // Define variables and initialize with empty values 
+                                    $sqle = "SELECT count(*) FROM castin WHERE store = 'VIJ'";
+                                    $resulte = $link->query($sqle);
+
+                                    $row = $resulte->fetch_array();
+                                    $count = $row[0];
+
+                                    echo '<div class="big text-white">' . $count . '</i></div>';
+                                ?>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-success text-white mb-4">
                             <div class="card-body">Number of visit today</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="card-footer">
+                            <div class="d-flex justify-content-center flex-row">
+                                 <div class="col-md-2 d-flex align-items-center justify-content-between"> HYD
                                 <?php
                                     // Include config file
                                     require_once "config.php";
@@ -84,7 +126,7 @@ require_once "navbar.php";
                                     ini_set('display_errors',1);
 
                                     // Define variables and initialize with empty values 
-                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate()";
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() AND store = 'HYD'";
                                     $resulte = $link->query($sqle);
 
                                     $row = $resulte->fetch_array();
@@ -92,13 +134,54 @@ require_once "navbar.php";
 
                                     echo '<div class="big text-white">' . $count . '</i></div>';
                                 ?>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-center justify-content-between"> VIZ
+                                <?php
+                                    // Include config file
+                                    require_once "config.php";
+                                    error_reporting(E_ALL);
+                                    ini_set('display_errors',1);
+
+                                    // Define variables and initialize with empty values 
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() AND store = 'VIZ'";
+                                    $resulte = $link->query($sqle);
+
+                                    $row = $resulte->fetch_array();
+                                    $count = $row[0];
+
+                                    echo '<div class="big text-white">' . $count . '</i></div>';
+                                ?>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-center justify-content-between"> BZA
+                                <?php
+                                    // Include config file
+                                    require_once "config.php";
+                                    error_reporting(E_ALL);
+                                    ini_set('display_errors',1);
+
+                                    // Define variables and initialize with empty values 
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() AND store = 'VIJ'";
+                                    $resulte = $link->query($sqle);
+
+                                    $row = $resulte->fetch_array();
+                                    $count = $row[0];
+
+                                    echo '<div class="big text-white">' . $count . '</i></div>';
+                                ?>
+                                </div>
+                                
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6">
                         <div class="card bg-danger text-white mb-4">
                             <div class="card-body">Number of walkout today</div>
-                            <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="card-footer">
+                               <div class="d-flex justify-content-center flex-row">
+                                 <div class="col-md-2 d-flex align-items-center justify-content-between"> HYD
                                 <?php
                                     // Include config file
                                     require_once "config.php";
@@ -106,7 +189,7 @@ require_once "navbar.php";
                                     ini_set('display_errors',1);
 
                                     // Define variables and initialize with empty values 
-                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() and walkout = 'Yes'";
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() and walkout = 'Yes' AND store = 'HYD'";
                                     $resulte = $link->query($sqle);
 
                                     $row = $resulte->fetch_array();
@@ -114,7 +197,46 @@ require_once "navbar.php";
 
                                     echo '<div class="big text-white">' . $count . '</i></div>';
                                 ?>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-center justify-content-between">VIZ
+                                <?php
+                                    // Include config file
+                                    require_once "config.php";
+                                    error_reporting(E_ALL);
+                                    ini_set('display_errors',1);
+
+                                    // Define variables and initialize with empty values 
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() and walkout = 'Yes' AND store = 'VIZ'";
+                                    $resulte = $link->query($sqle);
+
+                                    $row = $resulte->fetch_array();
+                                    $count = $row[0];
+
+                                    echo '<div class="big text-white">' . $count . '</i></div>';
+                                ?>
+                                </div>
+
+                                <div class="col-md-2 d-flex align-items-center justify-content-between">BZA
+                                <?php
+                                    // Include config file
+                                    require_once "config.php";
+                                    error_reporting(E_ALL);
+                                    ini_set('display_errors',1);
+
+                                    // Define variables and initialize with empty values 
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() and walkout = 'Yes' AND store = 'VIJ'";
+                                    $resulte = $link->query($sqle);
+
+                                    $row = $resulte->fetch_array();
+                                    $count = $row[0];
+
+                                    echo '<div class="big text-white">' . $count . '</i></div>';
+                                ?>
+                                </div>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

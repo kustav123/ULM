@@ -54,6 +54,7 @@
                                             echo "<tr >";
                                             echo "<th>#</th>";
                                             echo "<th>Associate Name</th>";
+                                            echo "<th>Store Name</th>";
                                             echo "<th>Status</th>";
                                             echo "<th>Action</th>";
                                             echo "</tr>";
@@ -63,6 +64,7 @@
                                                 echo "<tr>";
                                                 echo "<td>" . $row['id'] . "</td>";
                                                 echo "<td>" . $row['name'] . "</td>";
+                                                echo "<td>" . $row['store'] . "</td>";
                                                 echo "<td>" . $row['status'] . "</td>";
                                                 echo "<td>";
                                                 echo '<a href="ajax.php?asde=' . $row['id'] . '" title="Enable user" data-toggle="tooltip"><span class="fa fa-check-square"></span></a>';

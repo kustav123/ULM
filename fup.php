@@ -44,7 +44,7 @@
                                     // Include config file
                                     
                                     // Attempt select query execution
-                                    $sql = "SELECT * FROM followup where status = '1' and date(date) = curdate();";
+                                    $sql = "SELECT * FROM followup where status = '1' and store = '{$_SESSION["store"]}' and date(date) = curdate();";
                                     $record = "SELECT count(*) FROM followup";
                                     
                                     if($result = mysqli_query($link, $sql)){
@@ -56,6 +56,7 @@
                                                         echo "<th>#</th>";
                                                         echo "<th>Name</th>";
                                                         echo "<th>Mobile</th>";
+                                                        echo "<th>Type</th>";
                                                         echo "<th>Remarks</th>";
                                                         echo "<th>Next Followup</th>";
                                                         echo "<th>Updated By</th>";
@@ -71,6 +72,7 @@
                                                         echo "<td>" . $row['id'] . "</td>";
                                                         echo "<td>" . $row['castname'] . "</td>";
                                                         echo "<td>" . $row['cast_mob'] . "</td>";
+                                                        echo "<td>" . $row['type'] . "</td>";
                                                         echo "<td>" . $row['remarks'] . "</td>";
                                                         echo "<td>" . $row['date'] . "</td>";
                                                         echo "<td>" . $row['updated_by'] . "</td>";
@@ -128,7 +130,7 @@
                                  <?php
                                     // Include config file
                                     // Attempt select query execution
-                                    $sql = "SELECT * FROM followup where status = '1' and date(date) = CURDATE() + INTERVAL 1 DAY;";
+                                    $sql = "SELECT * FROM followup where status = '1' and store = '{$_SESSION["store"]}' and date(date) = CURDATE() + INTERVAL 1 DAY;";
                                     $record = "SELECT count(*) FROM followup";
                                     
                                     if($result = mysqli_query($link, $sql)){
@@ -140,6 +142,7 @@
                                                         echo "<th>#</th>";
                                                         echo "<th>Name</th>";
                                                         echo "<th>Mobile</th>";
+                                                        echo "<th>Type</th>";
                                                         echo "<th>Remarks</th>";
                                                         echo "<th>Next Followup</th>";
                                                         echo "<th>Updated By</th>";
@@ -155,6 +158,7 @@
                                                         echo "<td>" . $row['id'] . "</td>";
                                                         echo "<td>" . $row['castname'] . "</td>";
                                                         echo "<td>" . $row['cast_mob'] . "</td>";
+                                                        echo "<td>" . $row['type'] . "</td>";
                                                         echo "<td>" . $row['remarks'] . "</td>";
                                                         echo "<td>" . $row['date'] . "</td>";
                                                         echo "<td>" . $row['updated_by'] . "</td>";
@@ -211,7 +215,7 @@
                                  <?php
                                     // Include config file
                                     // Attempt select query execution
-                                    $sql = "SELECT * FROM followup where status = '1' and date(date) > DATE_ADD(CURDATE(), INTERVAL 1 DAY);";
+                                    $sql = "SELECT * FROM followup where status = '1' and store = '{$_SESSION["store"]}' and date(date) > DATE_ADD(CURDATE(), INTERVAL 1 DAY);";
                                     $record = "SELECT count(*) FROM followup";
                                     
                                     if($result = mysqli_query($link, $sql)){
@@ -223,6 +227,7 @@
                                                         echo "<th>#</th>";
                                                         echo "<th>Name</th>";
                                                         echo "<th>Mobile</th>";
+                                                        echo "<th>Type</th>";
                                                         echo "<th>Remarks</th>";
                                                         echo "<th>Next Followup</th>";
                                                         echo "<th>Updated By</th>";
@@ -238,6 +243,7 @@
                                                         echo "<td>" . $row['id'] . "</td>";
                                                         echo "<td>" . $row['castname'] . "</td>";
                                                         echo "<td>" . $row['cast_mob'] . "</td>";
+                                                        echo "<td>" . $row['type'] . "</td>";
                                                         echo "<td>" . $row['remarks'] . "</td>";
                                                         echo "<td>" . $row['date'] . "</td>";
                                                         echo "<td>" . $row['updated_by'] . "</td>";
@@ -294,7 +300,7 @@
                                  <?php
                                     // Include config file
                                     // Attempt select query execution
-                                    $sql = "SELECT * FROM followup where status = '1' and date(date) <  NOW();";
+                                    $sql = "SELECT * FROM followup where status = '1' and store = '{$_SESSION["store"]}' and date(date) < CURDATE();";
                                     $record = "SELECT count(*) FROM followup";
                                     
                                     if($result = mysqli_query($link, $sql)){
@@ -306,6 +312,7 @@
                                                         echo "<th>#</th>";
                                                         echo "<th>Name</th>";
                                                         echo "<th>Mobile</th>";
+                                                        echo "<th>Type</th>";
                                                         echo "<th>Remarks</th>";
                                                         echo "<th>Next Followup</th>";
                                                         echo "<th>Updated By</th>";
@@ -321,6 +328,7 @@
                                                         echo "<td>" . $row['id'] . "</td>";
                                                         echo "<td>" . $row['castname'] . "</td>";
                                                         echo "<td>" . $row['cast_mob'] . "</td>";
+                                                        echo "<td>" . $row['type'] . "</td>";
                                                         echo "<td>" . $row['remarks'] . "</td>";
                                                         echo "<td>" . $row['date'] . "</td>";
                                                         echo "<td>" . $row['updated_by'] . "</td>";

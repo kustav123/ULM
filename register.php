@@ -53,7 +53,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password_err = "Please enter a password.";     
     } else{
         $password = $input_Password;
+        $strname = trim($_POST["strname"]) ;
+        
+
     }
+
+    
+
+
 
 
     if ($_FILES["photo"]) {
@@ -76,11 +83,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($cou_name_errf) && empty($username_err) && empty( $password_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, role, fname, lname, photo) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (username, password, role, fname, lname, photo, store)  VALUES (?, ?, ?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters 
-            mysqli_stmt_bind_param($stmt, "ssisss",$username, $hashed_password,$role,$cou_namef, $cou_names , $photo);
+            mysqli_stmt_bind_param($stmt, "ssissss",$username, $hashed_password,$role,$cou_namef, $cou_names , $photo, $strname );
             
             // Set parameters
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -90,11 +97,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                // header("Location: seals.php?mob=$mobile_no");
-            //     echo '<script type="text/javascript">
-			// 	location.replace("userad.php");
-			//   </script>';
-                // exit();
+                
+                echo '<script type="text/javascript">
+				location.replace("userad.php");
+			  </script>';
+            //     exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -207,7 +214,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                        
                                                  // Create dropdown
                                                  echo '<select name="strname" class="form-control" id="strname" placeholder="Store Name">';
-                                                 echo '<option disabled selected value> -- Select Store -- </option>';
+                                                
                                                  while($row = $resulta->fetch_assoc()) {
                                                      echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
                                                  }

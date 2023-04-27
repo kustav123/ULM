@@ -238,9 +238,7 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-floating mb-3 mb-md-0">
 
-                                                                        <input type="date" id="froma" name="froma"
-                                                                            placeholder="From" input
-                                                                            class="form-control">
+                                                                        <input type="date" id="froma" name="froma" placeholder="From" input class="form-control">
                                                                         <label>Date From</label>
                                                                     </div>
                                                                 </div>
@@ -339,25 +337,55 @@
                                                 <div class="card-body">
                                                     <form action=./read.php method="post">
 
-                                                        <div class="row">
-                                                            <div class="col">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                            <div class="form-floating mb-3 mb-md-0">
+                                                                
+                                                                <input type="date" name="rfd" input class="form-control">
                                                                 <label>Date From</label>
-                                                                <input type="date" name="rfd" class="form-control">
                                                             </div>
-                                                            <div class="col">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                            <div class="form-floating mb-3 mb-md-0">
+                                                                
+                                                                <input type="date" name="rtd" input class="form-control">
                                                                 <label>Date To</label>
-                                                                <input type="date" name="rtd" class="form-control">
                                                             </div>
-
+                                                            </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <label for="tgi">Report By</label>
-                                                                <select id="rtyp" class="form-control" name='rtyp'>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                            <div class="form-floating mb-3 mb-md-0">
+                                                                
+                                                                <select id="rtyp" input class="form-control" name='rtyp'>
                                                                     <option value="1" selected>Created</option>
                                                                     <option value="2">Closed</option>
                                                                     <option value="3">Open,Last activity</option>
                                                                 </select>
+                                                                <label for="tgi">Report By</label>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="col-md-6"><label>Store</label>
+                                                                <div class="form-floating mb-3 mb-md-0">
+                                                                <?php
+                                                 // Include config file
+                                                 require_once "config.php";
+                                                 error_reporting(E_ALL);
+                                                 ini_set('display_errors',1);
+                                                 // Define variables and initialize with empty values 
+                                                 $sqln = "SELECT  strid, strname FROM store";
+                                                 $resultn = $link->query($sqln);
+                                                 // Create dropdown
+                                                 echo '<select id="selectpicker" name="store[]" input class="selectpicker" multiple data-live-search="true">';
+                                                 while($row = $resultn ->fetch_assoc()) {
+                                                     echo '<option value="' . $row['strid'] . '">' . $row['strname'] . '</option>';
+                                                 }
+                                                 echo '</select>';
+ 
+                                                 ?>
+
+                                                                </div>
                                                             </div>
                                                         </div>
 

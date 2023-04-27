@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $updatedby = $_SESSION["username"];
                 // Insert comment and follow-up date into follow-up table
                 $store = $_SESSION["store"] ;
-                $sql = "INSERT INTO followup (castid, cast_mob	,castname, remarks , 	updated_by ,date , createdby, store) VALUES ( '$cid', '$cmob' , '$cnamei', '$comment','$updatedby' , '$followup_date', '$username', '$store')";
+                $sql = "INSERT INTO followup (castid, cast_mob	,castname, remarks , 	updated_by ,date , createdby, store, type) VALUES ( '$cid', '$cmob' , '$cnamei', '$comment','$updatedby' , '$followup_date', '$username', '$store', '$type')";
                 if (mysqli_query($link, $sql)) {
                     logActivity('Add', 'Followup', 'Customer Followup ' . $cmob .' by '.  $_SESSION["username"] , $_SESSION["id"] );    
                 } else {
@@ -169,7 +169,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                  error_reporting(E_ALL);
                                                  ini_set('display_errors',1);
                                                  // Define variables and initialize with empty values 
-                                                 $sqln = "SELECT  cou_id, name, mob FROM castin";
+                                                 $sqln = "SELECT  cou_id, name, mob FROM castin WHERE store = '{$_SESSION["store"]}'";
                                                  $resultn = $link->query($sqln);
                                                  // Create dropdown
                                                  echo '<select name="name" class="form-control" id="name" placeholder="name">';
@@ -209,7 +209,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                  error_reporting(E_ALL);
                                                  ini_set('display_errors',1);
                                                  // Define variables and initialize with empty values 
-                                                 $sqle = "SELECT id, name FROM executive where status = 1";
+                                                 $sqle = "SELECT id, name FROM executive where status = 1 and store = '{$_SESSION["store"]}'";
                                                  $resulte = $link->query($sqle);
                        
                                                  // Create dropdown
@@ -232,7 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                  error_reporting(E_ALL);
                                                  ini_set('display_errors',1);
                                                  // Define variables and initialize with empty values 
-                                                 $sqla = "SELECT id, name FROM associate where status = 1 and id != 1";
+                                                 $sqla = "SELECT id, name FROM associate where status = 1 and id != 1 and store = '{$_SESSION["store"]}'";
                                                  $resulta = $link->query($sqla);
                        
                                                  // Create dropdown
@@ -389,32 +389,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                        <label for="Time">Exit Time</label>
                                                        <input type="Time" class="form-control" id="time" placeholder="time" name='time'>
                                                     </div>
-                                                    <div id ="backdateField" div class="col" style="display: none;">
-                                                       <label for="date">Exit Date</label>
-                                                       <input type="date" class="form-control" id="date" placeholder="date" name='date'>
-                                                    </div>
-                                                    <div class="col" >
+                                                    
+                                                    <div class="col-md-4" >
                                                     <label for="backdate">Back date</label></br>
                                                     <input type="checkbox" id="backdate" name="backdate" onchange="toggleBackdateFields()">
-
+                                                       <div id ="backdateField" div class="col" style="display: none;">
+                                                       <label for="date">Exit Date</label>
+                                                       <input type="date" class="form-control" id="date" placeholder="date" name='date'>
+                                                       </div>
                                                     </div>
                                                     <div class="col">
                                                     <label for="followup">Follow up:</label></br>
                                                     <input type="checkbox" id="followup" name="followup" onchange="toggleFollowUpFields()">
-
                                                     </div>
-
-                                                   
 
                                                     </div></br>
                                                    
-                                                    <div id="followup-fields" style="display: none;">
-                                                    <label for="comment">Comment:</label>
-                                                    <input type="text" id="comment" name="comment">
+                                                    <div class="d-none d-sm-block">
 
+                                                    <div id="followup-fields" style="display: none;">
+                                                    <label for="comment">Comment:</label></br>
+                                                    <input type="text" id="comment" name="comment">
+                                                   
                                                     <label for="followup-date">Follow up date:</label>
                                                     <input type="datetime-local" id="followup-date" name="followup-date">
-
+                                                    </div>
 
                                                     </div>
                        

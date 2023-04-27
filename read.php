@@ -636,26 +636,39 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
      
           $froms = $_POST["froms"];
           
-      
-      
+          if(!empty($tos) && !empty($froms) ){
+            $store = $_POST["store"];
+            $c = count($store) ;
+              // Prepare an insert statement
+          //  $param_store = implode(", ", $_POST["store"]);
+          $param_store = '';
+           
+           for ($i=0; $i < $c ; $i++) { 
+              $param_store .= "'{$store[$i]}'";
+              if($i != $c -1) {
+                  $param_store .= ",";
+              } 
+           }
+        }
       
       
       // Check input errors before inserting in database
       if(!empty($tos) && !empty($froms) ){
         
           // Prepare an insert statement
-          $sql = "SELECT date , type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? GROUP by date , Type; ";
+          $sql = "SELECT date , type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout', store FROM act where date between ? and ? and store in ($param_store) GROUP by date , type, store ;";
           
   
   
            
           if($stmt = mysqli_prepare($link, $sql)){
               // Bind variables to the prepared statement as parameters
-              mysqli_stmt_bind_param($stmt, "ss", $param_from, $param_to );
+              mysqli_stmt_bind_param($stmt, "ss", $param_from, $param_to);
               
               // Set parameters
               $param_from = $froms;
               $param_to = $tos;
+             
 
   
               
@@ -680,6 +693,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                             echo "<th>Advance</th>";
                             echo "<th>Order</th>";
                             echo "<th>Walk Out</th>";
+                            echo "<th>Store Name</th>";
 
                             
                        
@@ -699,6 +713,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                             echo "<td>" . $row['advance'] . "</td>";
                             echo "<td>" . $row['orderst'] . "</td>";
                             echo "<td>" . $row['walkout'] . "</td>";
+                            echo "<td>" . $row['store'] . "</td>";
                             
                         echo "</tr>";
                     }
@@ -794,6 +809,20 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
               $tos = $_POST["csdate"];
          
               $froms = $_POST["cdate"];
+              if(!empty($tos) && !empty($froms) ){
+                $store = $_POST["store"];
+                $c = count($store) ;
+                  // Prepare an insert statement
+              //  $param_store = implode(", ", $_POST["store"]);
+              $param_store = '';
+               
+               for ($i=0; $i < $c ; $i++) { 
+                  $param_store .= "'{$store[$i]}'";
+                  if($i != $c -1) {
+                      $param_store .= ",";
+                  } 
+               }
+            }
               
           
           
@@ -803,7 +832,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
           if(!empty($tos) && !empty($froms) ){
             
               // Prepare an insert statement
-              $sql = "SELECT  type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? GROUP by  Type; ";
+              $sql = "SELECT  type ,COUNT(actid) as visit , COUNT(CASE WHEN sr = 'Yes' THEN 1 ELSE NULL END) as 'sr' , COUNT(CASE WHEN requirement = 'Yes' THEN 1 ELSE NULL END) as 'requirement', COUNT(CASE WHEN billed = 'Happy' THEN 1 ELSE NULL END) as billed, COUNT(CASE WHEN advance = 'Yes' THEN 1 ELSE NULL END) as 'advance' , COUNT(CASE WHEN orderst = 'Yes' THEN 1 ELSE NULL END) as 'orderst' , COUNT(CASE WHEN walkout = 'Yes' THEN 1 ELSE NULL END) as 'walkout' FROM act where date between ? and ? and store in ($param_store) GROUP by  Type; ";
               
       
       
@@ -950,6 +979,21 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
              
                   $froms = $_POST["rfd"];
                   $type = $_POST["rtyp"];
+                  if(!empty($tos) && !empty($froms) ){
+                    $store = $_POST["store"];
+                    $c = count($store) ;
+                      // Prepare an insert statement
+                  //  $param_store = implode(", ", $_POST["store"]);
+                  $param_store = '';
+                   
+                   for ($i=0; $i < $c ; $i++) { 
+                      $param_store .= "'{$store[$i]}'";
+                      if($i != $c -1) {
+                          $param_store .= ",";
+                      } 
+                   }
+                }
+              
                   
 
               
@@ -959,11 +1003,11 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
               if(!empty($tos) && !empty($froms) ){
                 
                 if($type == 1){
-                    $sql = "SELECT * FROM `followup` WHERE createdat between ? and ?; ";  
+                    $sql = "SELECT * FROM `followup` WHERE createdat between ? and ? and store in ($param_store); ";  
                 }elseif($type == 2){
-                    $sql = "SELECT * FROM `followup` WHERE date(lastact) between ? and ? and status=0; ";
+                    $sql = "SELECT * FROM `followup` WHERE date(lastact) between ? and ? and store in ($param_store) and status=0; ";
                 }else{
-                    $sql = "SELECT * FROM `followup` WHERE date(lastact) between ? and ? and status=1; ";
+                    $sql = "SELECT * FROM `followup` WHERE date(lastact) between ? and ? and store in ($param_store) and status=1; ";
                 }
                 
                   
@@ -997,6 +1041,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                                     echo "<th>Last Remarks</th>";
                                     echo "<th>Remarks History</th>";
                                     echo "<th>Creat Date</th>";
+                                    echo "<th>Strore</th>";
         
                                     
                                
@@ -1012,6 +1057,7 @@ if (isset($_POST["froma"]) && isset($_POST["toa"])) {
                                     echo "<td>" . $row['remarks'] . "</td>";
                                     echo "<td>" . $row['remarks_his'] . "</td>";
                                     echo "<td>" . $row['createdat'] . "</td>";
+                                    echo "<td>" . $row['store'] . "</td>";
                                     
                                 echo "</tr>";
                             }

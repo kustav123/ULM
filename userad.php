@@ -57,6 +57,7 @@
                                             echo "<th>Last Name</th>";
                                             echo "<th>Username</th>";
                                             echo "<th>Role</th>";
+                                            echo "<th>Store</th>";
                                             echo "<th>Status</th>";
                                             echo "<th>Action</th>";
                                             echo "</tr>";
@@ -69,6 +70,7 @@
                                                 echo "<td>" . $row['lname'] . "</td>";
                                                 echo "<td>" . $row['username'] . "</td>";
                                                 echo "<td>" . $row['rolename'] . "</td>";
+                                                echo "<td>" . $row['store'] . "</td>";
                                                 echo "<td>" . $row['status'] . "</td>";
                                                 echo "<td>";
                                                 echo '<a href="ajax.php?uide=' . $row['id'] . '" title="Enable user" data-toggle="tooltip"><span class="fa fa-check-square"></span></a>';

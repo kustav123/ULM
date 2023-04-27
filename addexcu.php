@@ -29,17 +29,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $cou_name_errf = "Please enter a valid name.";
     } else{
         $cou_namef = $input_cou_namef;
+        $strname = trim($_POST["strname"]) ;
     }
     
     
     // Check input errors before inserting in database
     if(empty($cou_name_errf)){
         // Prepare an insert statement
-        $sql = "INSERT INTO executive (name) VALUES (?)";
+        $sql = "INSERT INTO executive (name, store) VALUES (?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters 
-            mysqli_stmt_bind_param($stmt, "s",$cou_namef,);
+            mysqli_stmt_bind_param($stmt, "ss",$cou_namef, $strname);
             
             
             // Attempt to execute the prepared statement
