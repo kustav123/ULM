@@ -12,6 +12,10 @@
     </head>
     
 <?php
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 // Include config file
 require_once "config.php";
 require_once "navbar.php";
@@ -82,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             logActivity('Update', 'UserDetail', 'Update UserDetail for ' . $_SESSION["username"] .' by '.  $_SESSION["username"] , $_SESSION["id"] );
                             
                             echo '<script type="text/javascript">
-                                    location.replace("changesetting.php");
+                                    location.replace("logout.php");
                                 </script>';
                 exit();
                         } else {

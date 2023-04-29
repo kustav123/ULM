@@ -100,7 +100,7 @@ require_once "navbar.php";
                                     ini_set('display_errors',1);
 
                                     // Define variables and initialize with empty values 
-                                    $sqle = "SELECT count(*) FROM castin WHERE store = 'VIJ'";
+                                    $sqle = "SELECT count(*) FROM castin WHERE store = 'BZA'";
                                     $resulte = $link->query($sqle);
 
                                     $row = $resulte->fetch_array();
@@ -162,7 +162,7 @@ require_once "navbar.php";
                                     ini_set('display_errors',1);
 
                                     // Define variables and initialize with empty values 
-                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() AND store = 'VIJ'";
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() AND store = 'BZA'";
                                     $resulte = $link->query($sqle);
 
                                     $row = $resulte->fetch_array();
@@ -225,7 +225,7 @@ require_once "navbar.php";
                                     ini_set('display_errors',1);
 
                                     // Define variables and initialize with empty values 
-                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() and walkout = 'Yes' AND store = 'VIJ'";
+                                    $sqle = "SELECT count(actid) FROM act where  date(date) = curdate() and walkout = 'Yes' AND store = 'BZA'";
                                     $resulte = $link->query($sqle);
 
                                     $row = $resulte->fetch_array();
