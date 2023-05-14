@@ -1,266 +1,564 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Sale Start</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
 
-<?php 
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-// Include config file
-require_once "config.php";
-require_once "navbar.php";
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-// Define variables and initialize with empty values
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-$inputmob =  "";
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-if($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET["mob"])){
-  
-$inputmob = trim($_GET["mob"]) ;
-  
-}
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate name
-    $input_cou_mob = trim($_POST["inputmob"]);
-    $input_cou_time = trim($_POST["time"]);
-    $input_cou_name = trim($_POST["name"]);
-    if(empty($input_cou_mob)){
-        $cou_mob_err = "PLease fill the required information";
-    } else {
-      $inputmob  = $input_cou_mob ;
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Mar 09 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+    <style>
+    @page {
+        size: auto;
+        margin: 0mm;
     }
-     
-    if(empty($input_cou_time)){
-      $cou_time_err = "PLease fill the required information";
-    }else {
-      $time = $input_cou_time ;
 
+    body {
+        background: #eee;
+        margin-top: 0;
+        padding: 0;
     }
-    if(empty($input_cou_name)){
-      $name_err = "Please click on the text box to autofill the name";
-    }else {
-      $name = $input_cou_name ;
 
+    .text-danger strong {
+        color: #9f181c;
     }
-  
-        $cou_id = trim($_POST["id"]);
-        $tgi = trim($_POST["tgi"]); 
-        $thc = trim($_POST["thc"]); 
-        $type = trim($_POST["type"]);
 
-    // Check input errors before inserting in database
-    if(empty($cou_mob_err) && empty($cou_time_err) && empty($name_err)){
+    .receipt-main {
+        background: #ffffff none repeat scroll 0 0;
+        border-bottom: 12px solid #333333;
+        border-top: 12px solid #9f181c;
+        /* margin-top: 50px; */
+        /* margin-bottom: 50px; */
+        padding: 40px 30px !important;
+        position: relative;
+        box-shadow: 0 1px 21px #acacac;
+        color: #333333;
+        font-family: open sans;
+    }
+
+    .receipt-main p {
+        color: #333333;
+        font-family: open sans;
+        line-height: 1.42857;
+    }
+
+    .receipt-footer h1 {
+        font-size: 15px;
+        font-weight: 400 !important;
+        margin: 0 !important;
+    }
+
+    .receipt-main::after {
+        background: #414143 none repeat scroll 0 0;
+        content: "";
+        height: 5px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -13px;
+    }
+
+    .receipt-main thead {
+        background: #414143 none repeat scroll 0 0;
+    }
+
+    .receipt-main thead th {
+        color: #fff;
+    }
+
+    .receipt-right h5 {
+        font-size: 18px;
+        font-weight: bolder;
+        margin: 0 0 5px 0;
+        color: navy;
+    }
+
+    .receipt-right p {
+        font-size: 12px;
+        margin: 0px;
+    }
+
+    .receipt-right p i {
+        text-align: center;
+        width: 18px;
         
-        $sql = "INSERT INTO `castin` ( `mob`, `name`, `tgi`, `thc`, `type`, `time`, `cou_id`, `store`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" ;
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssssss", $inputmob  , $name, $tgi, $thc, $type, $time, $cou_id ,$_SESSION["store"]);
-            // mysqli_stmt_bind_param($stmt, "ssssss",$fm, $advance, $orderst, $walkout, $reason, $conversion, );
-
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Records created successfully. Redirect to landing page
-                logActivity('Add', 'InCustomer', 'Customer entry ' . $name .' by '.  $_SESSION["username"] , $_SESSION["id"] );
-
-                echo '<script type="text/javascript">
-				location.replace("in.php");
-			  </script>';
-        mysqli_stmt_close($stmt);
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-        }
-         
-        // Close statement
-       
     }
-    mysqli_close($link);
 
-  }
-    // Close connection
+    .receipt-main td {
+        padding: 3px 8px !important;
+    }
+
+    .term td {
+        padding: 0px 5px !important;
+    }
+    .term table {
+         width: 100%;
+    }
+    .term thead th {
+        font-size: 10px;
+        font-weight: initial !important;
+    }
+    .bill p{
+        padding: 0;
+        margin: 0;
+        color: #9f181c;
+    }
+    .term tbody td {
+        font-size: 10px;
+        font-weight: initial !important;
+    }
+
+    .receipt-main th {
+        padding: 0px 10px !important;
+    }
+
+    .receipt-main td {
+        font-size: 10px;
+        font-weight: initial !important;
+    }
+
+    .receipt-main td p:last-child {
+        margin: 0;
+        padding: 0;
+    }
+
+    .receipt-main td h2 {
+        font-size: 15px;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    #container {
+        background-color: #dcdcdc;
+    }
+    </style>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#InkPrint').click(function() {
+            window.print();
+        });
+    });
+    </script>
+</head>
+
+<body>
 
 
-?>
 
-        <div id="layoutSidenav_content">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
-                                <div class="card shadow-lg text-white bg-info border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light text-info my-4">Entry Time</h3></div>
-                                    <div class="card-body">
-                                        
-                                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()">
-                                          <input type="hidden" name="id" class="form-control" id="id" >
 
-                                          <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                   
-                                                   <input type="text" id="inputmob" name="inputmob"
-                                                        placeholder="Mobile No" input
-                                                        class="form-control <?php echo (!empty($cou_mob_err)) ? 'is-invalid' : ''; ?>" id="inputmob" value="<?php echo $inputmob; ?>"  name="inputmob" >
-                                                   <span class="invalid-feedback"><?php echo $cou_mob_err;?></span>
-                                                   <label for="inputmob">Mobile</label>
+    <div class="col-md-12">
+        <div class="row">
 
-                                                </div>
-                                                </div>
+            <div class="receipt-main col-md-8">
+                <div class="row align-items-center">
+                    <!-- <div class="receipt-header"> -->
 
-                                                <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                  
-                                                  <input type="text" id="name" name="name" placeholder="Name" 
-                                                  class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" id="name" name="name" readonly>
-                                                  <span class="invalid-feedback"><?php echo $name_err;?></span>
-                                                  <label for="name">Name</label>
-                                                </div>
-                                             </div>
-                                             </div>
+                    <div class="col-4 text-left">
+                        <div class="receipt-right">
+                            <h5>Address</h5>
+                            <p>Changghurail, Maju, J.B. Pur</P>
+                            <p>Howrah - 711410</P>
+                            <p><b>Mobile :</b> +91 9830255838</p>
+                            <p><b>Email :</b> info@btntechno.in</p>
+                            <p><b>GSTIN :</b> 19CCDPSO725H1ZJ</p>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="row align-items-end">
+                            <div class="col-2">
+                                <div class="receipt-left">
+                                    <img class="img-responsive" alt="iamgurdeeposahan" src="photo/logo.jpg"
+                                        style="width: 80px;">
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="receipt-right">
+                                    <h5>B.T.N TECHNO SOLUTION</h5>
 
-                                             <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                 
-                                                <select id="tgi" name="tgi" placeholder="Total group in" input
-                                                        class="form-control">
-                                                        <option selected>1</option>
-                                                        <option>2</option>
-                                                    </select>
-                                                    <label for="tgi">Total group in</label>
-                                            </div>
-                                            </div>
-                                              
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-
-                                                <input type="number" id="thc" name="thc"
-                                                        placeholder="Total head count" input class="form-control">
-                                                    <label for="thc">Total head count</label>
-                                            </div>
-                                         </div>
-                                         </div>
-
-                                         <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-
-                                                <input type="time" id="time" name="time" placeholder="Store Entry Time" input
-                                                class="form-control <?php echo (!empty($cou_time_err)) ? 'is-invalid' : ''; ?>" id="time" name='time'>
-                                                <span class="invalid-feedback"><?php echo $cou_time_err;?></span>
-                                                <label for="time">Entry Time</label>
-
-                                              </div>
-                                              </div>
-
-                                               <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                   
-                                                   <select id="type" class="form-control" name='type'>
-                                                   <option selected>Gold</option>
-                                                   <option>Diamond</option>
-                                                   <option>Silver</option>
-                                                   </select>
-                                                   <label for="type">Type</label>
-                                                 </div>
-                                            </div>
-                                            </div>
-                                        </br>
-
-                                         <input type="submit" class="btn btn-primary" value="Submit" id="submit-btn">
-                                         <a href="in.php" class="btn btn-secondary ml-2">Cancel</a>
-                      
-
-                                      </form>
-                                    </div>
-                                    <!-- <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
-                                    </div> -->
+                                    <p>Total IT And CCTV Solution</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </main>
-            </div>
+                    <div class="col">
+                        <div class="receipt-right">
+                            <h5>TAX INVOICE</h5>
+                            <p>DATE :</p>
+                            <p>INVOICE NO # <?php echo $btnbill ; ?></p>
 
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-black mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Vasundhara 2022</div>
-                            <!-- <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div> -->
                         </div>
                     </div>
-                </footer>
+                    <!-- </div> -->
+                </div>
+                <hr>
+
+                <div class="row">
+                    <!-- <div class="receipt-header receipt-header-mid"> -->
+                    <div class="col-md-4 text-left">
+                        <div class="receipt-right">
+                            <h5>CUSTOMER</h5>
+                            <p>Changghurail, Maju, J.B. Pur</P>
+                            <p>Howrah - 711410</P>
+                            <p><b>Mobile :</b> +91 9830255838</p>
+                            <p><b>Email :</b> info@btntechno.in</p>
+                            <p><b>GSTIN :</b> 19CCDPSO725H1ZJ</p>
+                        </div>
+                    </div>
+                    
+
+                    <!-- </div> -->
+                </div>
+                <hr>
+
+                <div class ="bill">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-md-6">Description</th>
+                                <th>HSN/SAC</th>
+                                <th>Warranty</th>
+                                <th>QTY</th>
+                                <th>RATE</th>
+                                <th>AMOUNT</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            <tr>
+                                <td>Payment for August 2016</td>
+                                <td>ABHDYU</td>
+                                <td>12</td>
+                                <td>2</td>
+                                <td>600</td>
+                                <td> 12,00/-</td>
+                            </tr>
+                            
+                          
+                            
+
+                            <tr>
+                                <td colspan="2">
+                                    <p><b>Our Bank Details:</b></p>
+                                    <p>BANK OF INDIA</p>
+                                    <p><b>A/C No.</b> 428220110000112(CA)</p>
+                                    <p><b>IFS CODE:</b> BKID0004282</p>
+                                    <p><b>Branch</b> MAJU</p>
+                                </td>
+
+                                <td colspan="3" class="text-right">
+                                    <p>
+                                        <strong>Subtotal Amount: </strong>
+                                    
+                                    <p>
+                                        <strong>CGST 9%: </strong>
+                                    </p>
+                                    <p>
+                                        <strong>SGST 9%: </strong>
+                                    </p>
+                                    <p>
+                                        <strong>Round Off: </strong>
+                                    </p>
+                                </td>
+
+                                <td>
+                                    <p>
+                                        <strong> 65,500/-</strong>
+                                    </p>
+                                    <p>
+                                        <strong> 500/-</strong>
+                                    </p>
+                                    <p>
+                                        <strong> 1300/-</strong>
+                                    </p>
+                                    <p>
+                                        <strong>9500/-</strong>
+                                    </p>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+
+                                <td colspan="5" class="text-right">
+                                    <h2><strong>Total: </strong></h2>
+
+
+                                <td class="text-left text-danger">
+                                    <h2><strong> 31.566/-</strong></h2>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+                <div class="row">
+
+                    <table>
+                        <tr>
+                            <td class="col">
+
+                                <div class="term">
+                                    <table class="table table-bordered">
+                                        <thead class="bg-primary text-white">
+                                            <tr>
+                                                <th>
+                                                    * TERMS AND CONDITIONS
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Product received in good condition.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Warranty of all items are covered by the principles or by their
+                                                    authorised service centeres. We don't have any legal or financial
+                                                    liability for the same. Burn or physical damage case no warranty.
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td>
+                                                    Customer Acceptance (sign):
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </td>
+
+                            <td class="col-6">
+                                <h5 style="color: rgb(140, 140, 140);">Thanks for shopping.!</h5>
+                            </td>
+
+                            <td>
+                                <div class="receipt-left">
+                                    <h4>Stamp</h4>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+                    </table>
+
+
+                </div>
+
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script type="text/javascript">
-document.getElementById("inputmob").addEventListener("blur", function() {
-  var mobile = document.getElementById("inputmob").value;
-  var submitBtn = document.querySelector('input[type="submit"]');
-
-  // make an AJAX request to a PHP script that queries the database to retrieve the name and address corresponding to the mobile number
-  if (mobile.trim() != "") {
-
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      // when the AJAX request is complete, update the name and address fields in the form with the data returned by the PHP script
-      var data = JSON.parse(this.responseText);
-      if (data.name == "No Data") {
-        // if the response indicates no data, redirect to add.php
-        window.location.href = "addcus.php?type=new&mob=" + mobile;
-      } else if (data.status == "in") {
-        // if the response indicates that the customer is already inside the store, display an error message and disable the submit button
-        var errorText = document.createElement("span");
-        errorText.textContent = "Customer is already inside the store!";
-        errorText.style.color = "red";
-        var parentElement = document.getElementById("inputmob").parentNode;
-        parentElement.insertBefore(errorText, parentElement.lastChild);
-        submitBtn.disabled = true;
-        document.getElementById("name").value = "";
-      } else {
-        // if data is available, update the name and address fields in the form
-        document.getElementById("name").value = data.name;
-        document.getElementById("id").value = data.id;
-        var existingError = document.querySelector("#inputmob + span");
-        if (existingError) {
-          existingError.remove();
-        }
-        submitBtn.disabled = false;
-      }
-    }
-  };
-  xhttp.open("GET", "ajax.php?qr=" + mobile, true);
-  xhttp.send();
-} else {
-    // mobile field is blank, do nothing
-  }
-});
-</script>
+    </div>
+    <!-- <input type="button" onclick="printDiv('print-content')" value="print a div!"/> -->
+    <a href="#" id="InkPrint">Print</a>
 
 
-    </body>
+
+
+
+</body>
+
+
 </html>
-                        
-
- 
