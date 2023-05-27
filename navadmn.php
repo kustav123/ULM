@@ -347,7 +347,7 @@ function format ( d ) {
                           </div>
                         <div class="sb-sidenav-menu-heading  text-white">For Manegment</div>
                             <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-stream"></i></div>
                                 Dashboard
                             </a>
                             
@@ -379,6 +379,10 @@ function format ( d ) {
                                     </div>
                                 </nav>
                             </div>
+                            <a class="nav-link" href="exci.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>
+                                Exhibition
+                            </a>
                             <a class="nav-link" href="fup.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>
                                 Follow Up

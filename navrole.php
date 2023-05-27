@@ -341,13 +341,18 @@ function format ( d ) {
                         <div class="sb-sidenav-menu-heading  text-white"><?php  echo "Loged in as  ". $_SESSION["username"]?></div>
                            
                         <div class="sb-sidenav-menu-heading  text-white">For Manegment</div>
+                        <?php
+                              if ($_SESSION["role"] == 1)  {
+                              ?>
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt  text-white"></i></div>
                                 Dashboard
                             </a>
-                            
                             <?php
-                              if ($_SESSION["role"] == 2) {
+                              }
+                              ?>
+                            <?php
+                              if ($_SESSION["role"] == 2)  {
                               ?>
                               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                   <div class="sb-nav-link-icon"><i class="fas fa-book-open  text-white"></i></div>
@@ -409,8 +414,9 @@ function format ( d ) {
                             <?php
                               }
                               ?>
+
                               <?php
-                              if ($_SESSION["role"] == 1  || $_SESSION["role"] == 4){
+                              if ($_SESSION["role"] == 4){
                               ?> 
                                     <div class="sb-sidenav-menu-heading  text-white">Admin</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayout" aria-expanded="false" aria-controls="collapseLayout">

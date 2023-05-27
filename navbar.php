@@ -18,11 +18,11 @@ if($pageName !== 'ajax.php' && $pageName !== 'activity.php'  && $pageName !== 'f
       exit;
   }
   if(isset($_SESSION["role"]) && $_SESSION["role"] == 1) {
-      include('navadmn.php');
+      include('navrole.php');
   } elseif (isset($_SESSION["role"]) && $_SESSION["role"] == 2) {
-      include('navdatae.php');
+      include('navrole.php');
   } else {
-      include('navfm.php');
+      include('navrole.php');
   }
 }
 
